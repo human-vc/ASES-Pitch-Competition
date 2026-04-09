@@ -39,7 +39,7 @@ cd backend
 pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 
-# Set API keys
+Set API keys
 export VOYAGE_API_KEY="..."
 export ANTHROPIC_API_KEY="..."
 export REGULATIONS_GOV_API_KEY="..."  # from api.data.gov
