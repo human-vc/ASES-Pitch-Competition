@@ -1,6 +1,6 @@
 # DocketLens
 
-Regulatory comment intelligence platform — detects coordinated astroturfing campaigns in federal public comments.
+Regulatory comment intelligence platform: detects coordinated astroturfing campaigns in federal public comments.
 
 Built for the ASES Pitch Competition.
 
@@ -48,13 +48,13 @@ export REGULATIONS_GOV_API_KEY="..."  # from api.data.gov
 ## Usage
 
 ```bash
-# Generate synthetic test data with ground truth
+Generate synthetic test data with ground truth
 python synthetic.py --n_organic 300 --n_personas 100
 
-# Run full pipeline on synthetic data
+Run full pipeline on synthetic data
 python run_pipeline.py --docket_id SYNTHETIC-NET-NEUTRALITY-2026 --skip_ingestion
 
-# Or analyze a real CFPB docket
+Or analyze a real CFPB docket
 python run_pipeline.py --docket_id CFPB-2024-0002 --max_comments 500
 ```
 
