@@ -1,0 +1,13 @@
+sentence-transformers
+umap-learn
+hdbscan
+datasketch
+textstat
+fastapi
+uvicorn[standard]
+anthropic
+requests
+pandas
+numpy
+scipy
+scikit-learn

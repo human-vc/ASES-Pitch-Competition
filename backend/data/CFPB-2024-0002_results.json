@@ -1,0 +1,5018 @@
+{
+  "docket_id": "CFPB-2024-0002",
+  "n_comments": 305,
+  "n_clusters": 6,
+  "n_campaigns": 4,
+  "n_manufactured": 110,
+  "n_unique_voices": 21,
+  "manufactured_pct": 36.1,
+  "validity": 0.0,
+  "clusters": [
+    {
+      "cluster_id": 0,
+      "n_comments": 16,
+      "is_tree_campaign": false,
+      "classification": "organic",
+      "campaign_score": 0.195,
+      "score_breakdown": {
+        "duplicate": 0.125,
+        "temporal_coupling": 0.586,
+        "stylometric": 0.0,
+        "argument_identity": 0.16,
+        "ai_detection": 0.0,
+        "paraphrase_reachable": 1.0
+      },
+      "center_x": 8.2617,
+      "center_y": -26.6101,
+      "radius": 17.4469,
+      "sample_comments": [
+        "Consumers have a choice on where they want to bank. They also have access to countless digital tools to see if they have enough money in their accounts before making purchases. The federal government ",
+        "Thank you for the opportunity to provide my input on this proposed rule. I understand why the CFPB is trying to save consumers money on overdraft and NSF fees but this is not the way to do it. I feel ",
+        "DOCKET NO: CFPB-2024-0002 As a consumer, I\u2019d like to comment on the new rules proposed by the CFPB surrounding the banks, considering this also reflects my hardships due to the effect of their overdra",
+        "I strongly support the proposed \"junk \" fees proposal. I am impacts yearly with a charge for overdraft protection whether or not it is used. I believe this is wrong. If it was not used I should not be",
+        "I do think that bigger institutions are charging excessive overdraft fees, however I feel like overdraft programs have really helped consumers because it helps them pay for items even with a fee assoc"
+      ],
+      "stylometric": {
+        "n_members": 16,
+        "campaign_score": 0.0,
+        "p_value": 6.090564432062325e-17,
+        "median_variance_ratio": 2.6866,
+        "chi_stat": 121.39,
+        "std_ratio": [
+          1.6417,
+          2.3131,
+          2.1898,
+          0.8534,
+          0.958,
+          1.6391,
+          2.6807,
+          1.5805,
+          1.2139,
+          0.2446,
+          23.9231,
+          2.3237,
+          2.713,
+          2.1205,
+          0.0316,
+          1.1971,
+          3.1268,
+          0.0,
+          1.0702
+        ],
+        "feature_names": [
+          "burstiness_sent",
+          "sent_len_cv",
+          "mtld",
+          "yule_k",
+          "hapax_ratio",
+          "ttr",
+          "avg_word_len",
+          "char_trigram_entropy",
+          "punct_entropy",
+          "emdash_rate",
+          "fw_chi2_vs_docket",
+          "flesch_kincaid",
+          "coleman_liau",
+          "gunning_fog",
+          "dep_depth_mean",
+          "pos_entropy",
+          "discourse_marker_rate",
+          "llmism_rate",
+          "zlib_ratio"
+        ]
+      },
+      "temporal": {
+        "lambda_star": 14.114,
+        "p_analytic": 5.3915733454159686e-08,
+        "peak_count": 12,
+        "peak_expected": 2.47,
+        "peak_start": "2024-03-01T05:00:00+00:00",
+        "peak_end": "2024-03-15T04:00:00+00:00",
+        "window_minutes": 20100.0,
+        "tcs": 0.5861
+      },
+      "duplicates": {
+        "n_members": 16,
+        "n_duplicates": 2,
+        "dup_fraction": 0.125,
+        "largest_dup_group": 1
+      },
+      "duplicate_chain": {
+        "n_total": 16,
+        "n_exact_dup": 0,
+        "n_unique_text": 16,
+        "largest_exact_group": 1,
+        "n_near_dup_members": 2,
+        "n_near_dup_groups": 2,
+        "mean_pairwise_similarity": 0.7389,
+        "median_pairwise_similarity": 0.7391,
+        "min_pairwise_similarity": 0.6069,
+        "sophistication": "organic"
+      },
+      "geographic": {
+        "completeness": 0.0,
+        "n_states": 0,
+        "top_state": null,
+        "top_state_pct": 0.0,
+        "concentration_score": 0.0,
+        "entropy_ratio": null,
+        "confidence": "low",
+        "note": "insufficient location data"
+      },
+      "entities": {
+        "n_matched": 0,
+        "match_rate": 0.0,
+        "top_entity": null,
+        "concentration_score": 0.0,
+        "note": "no recognized entities"
+      },
+      "argument_identity": {
+        "n_extracted": 16,
+        "mean_identity": 0.1603,
+        "median_identity": 0.1,
+        "position_unanimity": 0.562,
+        "dominant_position": "oppose",
+        "top_premises": [
+          "Consumers have banking choice and access to account information",
+          "Rule eliminates personal accountability and responsibility",
+          "Government seeks industry consolidation and control",
+          "Government targets groups to create victimhood feeling",
+          "Government solutions compound existing problems"
+        ],
+        "argument_hash": "6906485a0b095b71",
+        "stance_summary": "Consumers already have tools and choice; rule wrongly eliminates accountability and reflects government overreach."
+      },
+      "ai_detection": {
+        "n_sampled": 16,
+        "mean_surprisal": 3.714,
+        "cluster_surprisal_std": 0.469,
+        "baseline_surprisal_std": 0.426,
+        "ai_score": 0.0,
+        "median_std_ratio": 1.0992,
+        "interpretation": "human_likely"
+      },
+      "paraphrase_probe": {
+        "n_exemplars": 3,
+        "n_paraphrases_generated": 30,
+        "n_paraphrases_reachable": 30,
+        "reachability_score": 1.0,
+        "median_paraphrase_distance": 0.1104,
+        "cluster_radius_used": 0.1939,
+        "interpretation": "paraphrase_reachable"
+      }
+    },
+    {
+      "cluster_id": 1,
+      "n_comments": 29,
+      "is_tree_campaign": false,
+      "classification": "campaign",
+      "campaign_score": 0.706,
+      "score_breakdown": {
+        "duplicate": 1.0,
+        "temporal_coupling": 0.252,
+        "stylometric": 0.942,
+        "argument_identity": 0.449,
+        "ai_detection": 0.95,
+        "paraphrase_reachable": 0.0
+      },
+      "center_x": 9.5426,
+      "center_y": -26.1262,
+      "radius": 17.8353,
+      "sample_comments": [
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co",
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co",
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co",
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co",
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co"
+      ],
+      "stylometric": {
+        "n_members": 29,
+        "campaign_score": 0.9422,
+        "p_value": 0.0,
+        "median_variance_ratio": 0.003,
+        "chi_stat": 3880.66,
+        "std_ratio": [
+          0.0393,
+          0.0367,
+          0.1276,
+          0.1137,
+          0.1091,
+          0.036,
+          0.0771,
+          0.0883,
+          0.3829,
+          0.0887,
+          0.0094,
+          0.041,
+          0.0729,
+          0.0548,
+          0.0316,
+          0.0676,
+          0.0,
+          0.0,
+          0.0142
+        ],
+        "feature_names": [
+          "burstiness_sent",
+          "sent_len_cv",
+          "mtld",
+          "yule_k",
+          "hapax_ratio",
+          "ttr",
+          "avg_word_len",
+          "char_trigram_entropy",
+          "punct_entropy",
+          "emdash_rate",
+          "fw_chi2_vs_docket",
+          "flesch_kincaid",
+          "coleman_liau",
+          "gunning_fog",
+          "dep_depth_mean",
+          "pos_entropy",
+          "discourse_marker_rate",
+          "llmism_rate",
+          "zlib_ratio"
+        ]
+      },
+      "temporal": {
+        "lambda_star": 8.4023,
+        "p_analytic": 2.0717237497083372e-05,
+        "peak_count": 28,
+        "peak_expected": 19.11,
+        "peak_start": "2024-03-19T04:00:00+00:00",
+        "peak_end": "2024-03-19T04:00:00+00:00",
+        "window_minutes": 0.0,
+        "tcs": 0.2515
+      },
+      "duplicates": {
+        "n_members": 29,
+        "n_duplicates": 29,
+        "dup_fraction": 1.0,
+        "largest_dup_group": 29
+      },
+      "duplicate_chain": {
+        "n_total": 29,
+        "n_exact_dup": 27,
+        "n_unique_text": 2,
+        "largest_exact_group": 27,
+        "n_near_dup_members": 29,
+        "n_near_dup_groups": 1,
+        "mean_pairwise_similarity": 0.9995,
+        "median_pairwise_similarity": 1.0,
+        "min_pairwise_similarity": 0.9932,
+        "sophistication": "lazy_template"
+      },
+      "geographic": {
+        "completeness": 0.0,
+        "n_states": 0,
+        "top_state": null,
+        "top_state_pct": 0.0,
+        "concentration_score": 0.0,
+        "entropy_ratio": null,
+        "confidence": "low",
+        "note": "insufficient location data"
+      },
+      "entities": {
+        "n_matched": 0,
+        "match_rate": 0.0,
+        "top_entity": null,
+        "concentration_score": 0.0,
+        "note": "no recognized entities"
+      },
+      "argument_identity": {
+        "n_extracted": 20,
+        "mean_identity": 0.449,
+        "median_identity": 0.4,
+        "position_unanimity": 1.0,
+        "dominant_position": "support",
+        "top_premises": [
+          "Consumers should not pay excessive fees for short-term credit",
+          "Current overdraft fees ($26-$39) exceed cost of service",
+          "Consumers harmed by excessive fees for short-term credit",
+          "Reasonable fees can cover bank costs while protecting consumers",
+          "Current overdraft fees exceed actual cost of service"
+        ],
+        "argument_hash": "0402dc4a44254a03",
+        "stance_summary": "Overdraft fees should be capped at $3 to reflect actual costs and protect consumers from excessive charges."
+      },
+      "ai_detection": {
+        "n_sampled": 20,
+        "mean_surprisal": 3.184,
+        "cluster_surprisal_std": 0.0,
+        "baseline_surprisal_std": 0.426,
+        "ai_score": 0.95,
+        "median_std_ratio": 0.0,
+        "interpretation": "ai_likely"
+      },
+      "paraphrase_probe": {
+        "n_exemplars": 3,
+        "n_paraphrases_generated": 30,
+        "n_paraphrases_reachable": 0,
+        "reachability_score": 0.0,
+        "median_paraphrase_distance": 0.0888,
+        "cluster_radius_used": 0.0,
+        "interpretation": "not_reachable"
+      }
+    },
+    {
+      "cluster_id": 2,
+      "n_comments": 5,
+      "is_tree_campaign": false,
+      "classification": "campaign",
+      "campaign_score": 0.405,
+      "score_breakdown": {
+        "duplicate": 1.0,
+        "temporal_coupling": 0.047,
+        "stylometric": 0.237,
+        "argument_identity": 0.454,
+        "ai_detection": 0.317,
+        "paraphrase_reachable": 0
+      },
+      "center_x": 12.0828,
+      "center_y": -23.5827,
+      "radius": 17.8538,
+      "sample_comments": [
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co",
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co",
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co",
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co",
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co"
+      ],
+      "stylometric": {
+        "n_members": 5,
+        "campaign_score": 0.2375,
+        "p_value": 1.501295041501e-311,
+        "median_variance_ratio": 0.0,
+        "chi_stat": 1520.81,
+        "std_ratio": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0316,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feature_names": [
+          "burstiness_sent",
+          "sent_len_cv",
+          "mtld",
+          "yule_k",
+          "hapax_ratio",
+          "ttr",
+          "avg_word_len",
+          "char_trigram_entropy",
+          "punct_entropy",
+          "emdash_rate",
+          "fw_chi2_vs_docket",
+          "flesch_kincaid",
+          "coleman_liau",
+          "gunning_fog",
+          "dep_depth_mean",
+          "pos_entropy",
+          "discourse_marker_rate",
+          "llmism_rate",
+          "zlib_ratio"
+        ]
+      },
+      "temporal": {
+        "lambda_star": 0.2419,
+        "p_analytic": 0.24333673200784828,
+        "peak_count": 4,
+        "peak_expected": 3.3,
+        "peak_start": "2024-03-19T04:00:00+00:00",
+        "peak_end": "2024-03-19T04:00:00+00:00",
+        "window_minutes": 0.0,
+        "tcs": 0.0472
+      },
+      "duplicates": {
+        "n_members": 5,
+        "n_duplicates": 5,
+        "dup_fraction": 1.0,
+        "largest_dup_group": 5
+      },
+      "duplicate_chain": {
+        "n_total": 5,
+        "n_exact_dup": 5,
+        "n_unique_text": 0,
+        "largest_exact_group": 5,
+        "n_near_dup_members": 5,
+        "n_near_dup_groups": 1,
+        "mean_pairwise_similarity": 1.0,
+        "median_pairwise_similarity": 1.0,
+        "min_pairwise_similarity": 1.0,
+        "sophistication": "lazy_template"
+      },
+      "geographic": {
+        "completeness": 0.0,
+        "n_states": 0,
+        "top_state": null,
+        "top_state_pct": 0.0,
+        "concentration_score": 0.0,
+        "entropy_ratio": null,
+        "confidence": "low",
+        "note": "insufficient location data"
+      },
+      "entities": {
+        "n_matched": 0,
+        "match_rate": 0.0,
+        "top_entity": null,
+        "concentration_score": 0.0,
+        "note": "no recognized entities"
+      },
+      "argument_identity": {
+        "n_extracted": 5,
+        "mean_identity": 0.4543,
+        "median_identity": 0.4714,
+        "position_unanimity": 1.0,
+        "dominant_position": "support",
+        "top_premises": [
+          "Rule protects consumers while fairly compensating banks",
+          "Consumers should not pay excessive fees for short-term credit",
+          "Current overdraft fees ($26-$39) excessive relative to cost",
+          "Overdraft fees function as short-term loans",
+          "Banks need compensation for providing overdraft coverage"
+        ],
+        "argument_hash": "b73eb3dd67188275",
+        "stance_summary": "Current overdraft fees are exploitative and should be capped at a cost-justified level."
+      },
+      "ai_detection": {
+        "n_sampled": 5,
+        "mean_surprisal": 3.184,
+        "cluster_surprisal_std": 0.0,
+        "baseline_surprisal_std": 0.426,
+        "ai_score": 0.3167,
+        "median_std_ratio": 0.0,
+        "interpretation": "uncertain"
+      },
+      "paraphrase_probe": {}
+    },
+    {
+      "cluster_id": 3,
+      "n_comments": 5,
+      "is_tree_campaign": false,
+      "classification": "campaign",
+      "campaign_score": 0.409,
+      "score_breakdown": {
+        "duplicate": 1.0,
+        "temporal_coupling": 0.047,
+        "stylometric": 0.237,
+        "argument_identity": 0.477,
+        "ai_detection": 0.317,
+        "paraphrase_reachable": 0
+      },
+      "center_x": 11.9983,
+      "center_y": -23.9929,
+      "radius": 18.0023,
+      "sample_comments": [
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co",
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co",
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co",
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co",
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co"
+      ],
+      "stylometric": {
+        "n_members": 5,
+        "campaign_score": 0.2375,
+        "p_value": 1.501295041501e-311,
+        "median_variance_ratio": 0.0,
+        "chi_stat": 1520.81,
+        "std_ratio": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0316,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feature_names": [
+          "burstiness_sent",
+          "sent_len_cv",
+          "mtld",
+          "yule_k",
+          "hapax_ratio",
+          "ttr",
+          "avg_word_len",
+          "char_trigram_entropy",
+          "punct_entropy",
+          "emdash_rate",
+          "fw_chi2_vs_docket",
+          "flesch_kincaid",
+          "coleman_liau",
+          "gunning_fog",
+          "dep_depth_mean",
+          "pos_entropy",
+          "discourse_marker_rate",
+          "llmism_rate",
+          "zlib_ratio"
+        ]
+      },
+      "temporal": {
+        "lambda_star": 0.2419,
+        "p_analytic": 0.24333673200784828,
+        "peak_count": 4,
+        "peak_expected": 3.3,
+        "peak_start": "2024-03-19T04:00:00+00:00",
+        "peak_end": "2024-03-19T04:00:00+00:00",
+        "window_minutes": 0.0,
+        "tcs": 0.0472
+      },
+      "duplicates": {
+        "n_members": 5,
+        "n_duplicates": 5,
+        "dup_fraction": 1.0,
+        "largest_dup_group": 5
+      },
+      "duplicate_chain": {
+        "n_total": 5,
+        "n_exact_dup": 5,
+        "n_unique_text": 0,
+        "largest_exact_group": 5,
+        "n_near_dup_members": 5,
+        "n_near_dup_groups": 1,
+        "mean_pairwise_similarity": 1.0,
+        "median_pairwise_similarity": 1.0,
+        "min_pairwise_similarity": 1.0,
+        "sophistication": "lazy_template"
+      },
+      "geographic": {
+        "completeness": 0.0,
+        "n_states": 0,
+        "top_state": null,
+        "top_state_pct": 0.0,
+        "concentration_score": 0.0,
+        "entropy_ratio": null,
+        "confidence": "low",
+        "note": "insufficient location data"
+      },
+      "entities": {
+        "n_matched": 0,
+        "match_rate": 0.0,
+        "top_entity": null,
+        "concentration_score": 0.0,
+        "note": "no recognized entities"
+      },
+      "argument_identity": {
+        "n_extracted": 5,
+        "mean_identity": 0.4767,
+        "median_identity": 0.5,
+        "position_unanimity": 1.0,
+        "dominant_position": "support",
+        "top_premises": [
+          "Current overdraft fees ($26-$39) are excessive",
+          "Consumers need protection from predatory fees",
+          "Fees should reflect actual cost of service provision",
+          "Reasonable fees ($3) still compensate banks fairly",
+          "Overdraft fees should cover only cost of credit provision"
+        ],
+        "argument_hash": "8423f7a3a2a42b82",
+        "stance_summary": "Current overdraft fees are predatory; CFPB should cap them at $3 to protect consumers while fairly compensating banks."
+      },
+      "ai_detection": {
+        "n_sampled": 5,
+        "mean_surprisal": 3.184,
+        "cluster_surprisal_std": 0.0,
+        "baseline_surprisal_std": 0.426,
+        "ai_score": 0.3167,
+        "median_std_ratio": 0.0,
+        "interpretation": "uncertain"
+      },
+      "paraphrase_probe": {}
+    },
+    {
+      "cluster_id": 4,
+      "n_comments": 5,
+      "is_tree_campaign": false,
+      "classification": "uncertain",
+      "campaign_score": 0.397,
+      "score_breakdown": {
+        "duplicate": 1.0,
+        "temporal_coupling": 0.047,
+        "stylometric": 0.237,
+        "argument_identity": 0.417,
+        "ai_detection": 0.317,
+        "paraphrase_reachable": 0
+      },
+      "center_x": 11.1474,
+      "center_y": -24.0445,
+      "radius": 17.6002,
+      "sample_comments": [
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co",
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co",
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co",
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co",
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co"
+      ],
+      "stylometric": {
+        "n_members": 5,
+        "campaign_score": 0.2375,
+        "p_value": 1.501295041501e-311,
+        "median_variance_ratio": 0.0,
+        "chi_stat": 1520.81,
+        "std_ratio": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0316,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feature_names": [
+          "burstiness_sent",
+          "sent_len_cv",
+          "mtld",
+          "yule_k",
+          "hapax_ratio",
+          "ttr",
+          "avg_word_len",
+          "char_trigram_entropy",
+          "punct_entropy",
+          "emdash_rate",
+          "fw_chi2_vs_docket",
+          "flesch_kincaid",
+          "coleman_liau",
+          "gunning_fog",
+          "dep_depth_mean",
+          "pos_entropy",
+          "discourse_marker_rate",
+          "llmism_rate",
+          "zlib_ratio"
+        ]
+      },
+      "temporal": {
+        "lambda_star": 0.2419,
+        "p_analytic": 0.24333673200784828,
+        "peak_count": 4,
+        "peak_expected": 3.3,
+        "peak_start": "2024-03-19T04:00:00+00:00",
+        "peak_end": "2024-03-19T04:00:00+00:00",
+        "window_minutes": 0.0,
+        "tcs": 0.0472
+      },
+      "duplicates": {
+        "n_members": 5,
+        "n_duplicates": 5,
+        "dup_fraction": 1.0,
+        "largest_dup_group": 5
+      },
+      "duplicate_chain": {
+        "n_total": 5,
+        "n_exact_dup": 5,
+        "n_unique_text": 0,
+        "largest_exact_group": 5,
+        "n_near_dup_members": 5,
+        "n_near_dup_groups": 1,
+        "mean_pairwise_similarity": 1.0,
+        "median_pairwise_similarity": 1.0,
+        "min_pairwise_similarity": 1.0,
+        "sophistication": "lazy_template"
+      },
+      "geographic": {
+        "completeness": 0.0,
+        "n_states": 0,
+        "top_state": null,
+        "top_state_pct": 0.0,
+        "concentration_score": 0.0,
+        "entropy_ratio": null,
+        "confidence": "low",
+        "note": "insufficient location data"
+      },
+      "entities": {
+        "n_matched": 0,
+        "match_rate": 0.0,
+        "top_entity": null,
+        "concentration_score": 0.0,
+        "note": "no recognized entities"
+      },
+      "argument_identity": {
+        "n_extracted": 5,
+        "mean_identity": 0.4167,
+        "median_identity": 0.4,
+        "position_unanimity": 1.0,
+        "dominant_position": "support",
+        "top_premises": [
+          "Current overdraft fees ($26-$39) exceed cost of service",
+          "Consumers should not pay excessive fees for short-term credit",
+          "Current overdraft fees ($26-$39) are excessive",
+          "Fees should only cover actual credit provision costs",
+          "Consumers need protection from predatory fees"
+        ],
+        "argument_hash": "a9f1b8ea47decb89",
+        "stance_summary": "Current overdraft fees are unjustifiably high and should be capped at cost-recovery levels."
+      },
+      "ai_detection": {
+        "n_sampled": 5,
+        "mean_surprisal": 3.184,
+        "cluster_surprisal_std": 0.0,
+        "baseline_surprisal_std": 0.426,
+        "ai_score": 0.3167,
+        "median_std_ratio": 0.0,
+        "interpretation": "uncertain"
+      },
+      "paraphrase_probe": {}
+    },
+    {
+      "cluster_id": 5,
+      "n_comments": 71,
+      "is_tree_campaign": false,
+      "classification": "campaign",
+      "campaign_score": 0.688,
+      "score_breakdown": {
+        "duplicate": 1.0,
+        "temporal_coupling": 0.149,
+        "stylometric": 0.95,
+        "argument_identity": 0.429,
+        "ai_detection": 0.95,
+        "paraphrase_reachable": 0.0
+      },
+      "center_x": 12.0438,
+      "center_y": -23.3007,
+      "radius": 17.681,
+      "sample_comments": [
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co",
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co",
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co",
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co",
+        "I strongly support the CFPB\u2019s proposal to slash bank overdraft fees. Under the proposal \u2014 applicable to only the largest financial institutions \u2014 banks could charge a reasonable amount to cover the co"
+      ],
+      "stylometric": {
+        "n_members": 71,
+        "campaign_score": 0.95,
+        "p_value": 0.0,
+        "median_variance_ratio": 0.0,
+        "chi_stat": 26902.25,
+        "std_ratio": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0316,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "feature_names": [
+          "burstiness_sent",
+          "sent_len_cv",
+          "mtld",
+          "yule_k",
+          "hapax_ratio",
+          "ttr",
+          "avg_word_len",
+          "char_trigram_entropy",
+          "punct_entropy",
+          "emdash_rate",
+          "fw_chi2_vs_docket",
+          "flesch_kincaid",
+          "coleman_liau",
+          "gunning_fog",
+          "dep_depth_mean",
+          "pos_entropy",
+          "discourse_marker_rate",
+          "llmism_rate",
+          "zlib_ratio"
+        ]
+      },
+      "temporal": {
+        "lambda_star": 11.4358,
+        "p_analytic": 8.659719133784824e-07,
+        "peak_count": 70,
+        "peak_expected": 57.27,
+        "peak_start": "2024-03-15T04:00:00+00:00",
+        "peak_end": "2024-03-22T04:00:00+00:00",
+        "window_minutes": 10080.0,
+        "tcs": 0.1488
+      },
+      "duplicates": {
+        "n_members": 71,
+        "n_duplicates": 71,
+        "dup_fraction": 1.0,
+        "largest_dup_group": 71
+      },
+      "duplicate_chain": {
+        "n_total": 71,
+        "n_exact_dup": 71,
+        "n_unique_text": 0,
+        "largest_exact_group": 71,
+        "n_near_dup_members": 71,
+        "n_near_dup_groups": 1,
+        "mean_pairwise_similarity": 1.0,
+        "median_pairwise_similarity": 1.0,
+        "min_pairwise_similarity": 1.0,
+        "sophistication": "lazy_template"
+      },
+      "geographic": {
+        "completeness": 0.0,
+        "n_states": 0,
+        "top_state": null,
+        "top_state_pct": 0.0,
+        "concentration_score": 0.0,
+        "entropy_ratio": null,
+        "confidence": "low",
+        "note": "insufficient location data"
+      },
+      "entities": {
+        "n_matched": 0,
+        "match_rate": 0.0,
+        "top_entity": null,
+        "concentration_score": 0.0,
+        "note": "no recognized entities"
+      },
+      "argument_identity": {
+        "n_extracted": 20,
+        "mean_identity": 0.4289,
+        "median_identity": 0.4,
+        "position_unanimity": 1.0,
+        "dominant_position": "support",
+        "top_premises": [
+          "Consumers should not pay excessive fees for short-term credit",
+          "Current overdraft fees exceed actual credit provision costs",
+          "Current overdraft fees exceed actual cost of service",
+          "Rule protects consumers while fairly compensating banks",
+          "Reasonable fees can cover bank costs while protecting consumers"
+        ],
+        "argument_hash": "a658fb4fdecca6d5",
+        "stance_summary": "Current overdraft fees are excessive and should be capped at cost-recovery levels to protect consumers."
+      },
+      "ai_detection": {
+        "n_sampled": 20,
+        "mean_surprisal": 3.184,
+        "cluster_surprisal_std": 0.0,
+        "baseline_surprisal_std": 0.426,
+        "ai_score": 0.95,
+        "median_std_ratio": 0.0,
+        "interpretation": "ai_likely"
+      },
+      "paraphrase_probe": {
+        "n_exemplars": 3,
+        "n_paraphrases_generated": 30,
+        "n_paraphrases_reachable": 0,
+        "reachability_score": 0.0,
+        "median_paraphrase_distance": 0.1016,
+        "cluster_radius_used": 0.0,
+        "interpretation": "not_reachable"
+      }
+    }
+  ],
+  "timeline": [
+    {
+      "timestamp": "2024-02-23T05:00:00+00:00",
+      "count": 1,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-23T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-23T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-23T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-23T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-23T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-23T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-23T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-23T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-23T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-23T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-23T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-23T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-23T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-23T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-23T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-23T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-23T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-23T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-24T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-25T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T05:00:00+00:00",
+      "count": 2,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-26T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-27T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-28T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-02-29T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T05:00:00+00:00",
+      "count": 2,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-01T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-02T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-03T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T05:00:00+00:00",
+      "count": 1,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-04T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T05:00:00+00:00",
+      "count": 1,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-05T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-06T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T05:00:00+00:00",
+      "count": 28,
+      "is_burst": true
+    },
+    {
+      "timestamp": "2024-03-07T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-07T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T05:00:00+00:00",
+      "count": 6,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-08T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-09T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-10T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T04:00:00+00:00",
+      "count": 4,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-11T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T04:00:00+00:00",
+      "count": 1,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-12T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T04:00:00+00:00",
+      "count": 1,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-13T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-14T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T04:00:00+00:00",
+      "count": 3,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-15T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-16T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-17T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T04:00:00+00:00",
+      "count": 1,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-18T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T04:00:00+00:00",
+      "count": 201,
+      "is_burst": true
+    },
+    {
+      "timestamp": "2024-03-19T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-19T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T04:00:00+00:00",
+      "count": 31,
+      "is_burst": true
+    },
+    {
+      "timestamp": "2024-03-20T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-20T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T04:00:00+00:00",
+      "count": 3,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-21T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T04:00:00+00:00",
+      "count": 7,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-22T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-23T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T04:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T05:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T06:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T07:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T08:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T09:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T10:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T11:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T12:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T13:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T14:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T15:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T16:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T17:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T18:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T19:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T20:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T21:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T22:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-24T23:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-25T00:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-25T01:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-25T02:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-25T03:00:00+00:00",
+      "count": 0,
+      "is_burst": false
+    },
+    {
+      "timestamp": "2024-03-25T04:00:00+00:00",
+      "count": 12,
+      "is_burst": false
+    }
+  ],
+  "communities": [
+    {
+      "community_id": 0,
+      "n_members": 201,
+      "members": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174,
+        175,
+        176,
+        177,
+        178,
+        179,
+        180,
+        181,
+        182,
+        183,
+        184,
+        185,
+        186,
+        187,
+        188,
+        189,
+        190,
+        191,
+        192,
+        193,
+        194,
+        195,
+        196,
+        197,
+        198,
+        199,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        214,
+        215,
+        216,
+        217,
+        218,
+        219,
+        220,
+        221,
+        222,
+        223,
+        224,
+        225,
+        226,
+        227,
+        228,
+        229,
+        230,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238,
+        239,
+        240,
+        241,
+        242,
+        243,
+        244,
+        245,
+        246,
+        247,
+        248,
+        249,
+        250,
+        251
+      ],
+      "edge_types": [
+        "template",
+        "timing"
+      ],
+      "internal_weight": 16080.0,
+      "density": 0.8
+    },
+    {
+      "community_id": 1,
+      "n_members": 59,
+      "members": [
+        5,
+        6,
+        47,
+        48,
+        49,
+        50,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279,
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299,
+        300,
+        301,
+        302,
+        303,
+        304
+      ],
+      "edge_types": [
+        "template",
+        "timing"
+      ],
+      "internal_weight": 733.6,
+      "density": 0.4288
+    },
+    {
+      "community_id": 2,
+      "n_members": 28,
+      "members": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34
+      ],
+      "edge_types": [
+        "template",
+        "timing"
+      ],
+      "internal_weight": 152.0,
+      "density": 0.4021
+    },
+    {
+      "community_id": 3,
+      "n_members": 6,
+      "members": [
+        35,
+        36,
+        37,
+        38,
+        39,
+        40
+      ],
+      "edge_types": [
+        "timing"
+      ],
+      "internal_weight": 6.0,
+      "density": 0.4
+    },
+    {
+      "community_id": 4,
+      "n_members": 4,
+      "members": [
+        41,
+        42,
+        43,
+        44
+      ],
+      "edge_types": [
+        "timing"
+      ],
+      "internal_weight": 2.4,
+      "density": 0.4
+    }
+  ],
+  "coordination_overlap": [
+    {
+      "community_id": 0,
+      "n_members": 201,
+      "best_semantic_match": 5,
+      "overlap": 0.249
+    },
+    {
+      "community_id": 1,
+      "n_members": 59,
+      "best_semantic_match": 5,
+      "overlap": 0.356
+    },
+    {
+      "community_id": 2,
+      "n_members": 28,
+      "best_semantic_match": 0,
+      "overlap": 0.143
+    },
+    {
+      "community_id": 3,
+      "n_members": 6,
+      "best_semantic_match": 0,
+      "overlap": 0.167
+    },
+    {
+      "community_id": 4,
+      "n_members": 4,
+      "best_semantic_match": 0,
+      "overlap": 0.5
+    }
+  ]
+}

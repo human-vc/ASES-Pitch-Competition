@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DocketLens</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; overflow: hidden; font-family: "SF Mono", "Fira Code", "Courier New", monospace; cursor: none; }
+  canvas { display: block; position: fixed; top: 0; left: 0; }
+
+  #hint {
+    position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+    z-index: 20; pointer-events: none; transition: opacity 0.6s;
+  }
+  #hint .title { color: rgba(255,255,255,0.15); font-size: 13px; letter-spacing: 8px; text-transform: uppercase; }
+  #hint .sub { color: rgba(255,255,255,0.06); font-size: 10px; letter-spacing: 4px; margin-top: 10px; }
+
+  #phase-bar { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 30; }
+  #phase-fill { height: 100%; width: 0%; transition: width 0.8s ease, background 0.5s; background: rgba(255,255,255,0.15); }
+
+  #counter {
+    position: fixed; bottom: 30px; right: 40px; z-index: 15;
+    font-size: 52px; font-weight: 800; color: rgba(255,255,255,0.06);
+    pointer-events: none; letter-spacing: -2px;
+  }
+  #bottom-hint {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 15;
+    font-size: 9px; color: rgba(255,255,255,0.08); text-transform: uppercase;
+    letter-spacing: 4px; pointer-events: none; transition: opacity 0.5s;
+  }
+
+  #sidebar {
+    position: fixed; top: 0; right: 0; width: 360px; height: 100vh;
+    background: rgba(6,6,6,0.96); border-left: 1px solid rgba(255,255,255,0.06);
+    z-index: 25; transform: translateX(100%); transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    padding: 40px 28px; overflow-y: auto; pointer-events: none;
+  }
+  #sidebar.show { transform: translateX(0); }
+  .sb-title { font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.9); letter-spacing: 3px; margin-bottom: 4px; }
+  .sb-docket { font-size: 10px; color: rgba(255,255,255,0.25); letter-spacing: 1px; margin-bottom: 32px; }
+  .sb-div { height: 1px; background: rgba(255,255,255,0.06); margin: 20px 0; }
+  .sb-label { font-size: 10px; color: rgba(255,255,255,0.35); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .sb-val { font-size: 32px; font-weight: 800; margin-bottom: 4px; letter-spacing: -1px; }
+  .sb-sub { font-size: 11px; margin-bottom: 24px; }
+  .sb-alert { font-size: 12px; font-weight: 700; letter-spacing: 2px; margin-bottom: 16px; }
+  .ci { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 18px; }
+  .ci-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 3px; flex-shrink: 0; }
+  .ci-name { font-size: 11px; color: rgba(255,255,255,0.7); }
+  .ci-count { font-size: 10px; margin-top: 2px; }
+</style>
+</head>
+<body>
+
+<div id="hint"><div style="text-align:center">
+  <div class="title">DocketLens</div>
+  <div class="sub">click or press space</div>
+</div></div>
+
+<div id="phase-bar"><div id="phase-fill"></div></div>
+<div id="counter"></div>
+<div id="bottom-hint"></div>
+<canvas id="c"></canvas>
+
+<div id="sidebar">
+  <div class="sb-title">DOCKETLENS</div>
+  <div class="sb-docket">FCC-2017-0200 &nbsp;|&nbsp; Net Neutrality</div>
+  <div class="sb-div"></div>
+  <div class="sb-label">Total Comments Analyzed</div>
+  <div class="sb-val" style="color:#fff">22,000,000</div>
+  <div class="sb-sub" style="color:rgba(255,255,255,0.25)">Largest comment period in federal history</div>
+  <div class="sb-label">Processing Time</div>
+  <div class="sb-val" style="color:#06b6d4">11.2<span style="font-size:18px;opacity:0.6">s</span></div>
+  <div class="sb-sub" style="color:rgba(6,182,212,0.35)">vs. 4 years (NY Attorney General investigation)</div>
+  <div class="sb-div"></div>
+  <div class="sb-alert" style="color:#ef4444">4 COORDINATED CAMPAIGNS DETECTED</div>
+  <div class="sb-label">Manufactured Comments</div>
+  <div class="sb-val" style="color:#ef4444">18,200,000</div>
+  <div class="sb-sub" style="color:rgba(239,68,68,0.4)">82.7% of all submissions</div>
+  <div class="sb-label">Unique Voices</div>
+  <div class="sb-val" style="color:#22c55e">3,300,000</div>
+  <div class="sb-sub" style="color:rgba(34,197,94,0.4)">15.0% of all submissions</div>
+  <div class="sb-div"></div>
+  <div class="sb-label" style="margin-bottom:16px">Identified Campaigns</div>
+  <div class="ci"><div class="ci-dot" style="background:#ef4444;box-shadow:0 0 8px #ef444466"></div><div><div class="ci-name">Campaign A: Industry Template</div><div class="ci-count" style="color:rgba(239,68,68,0.5)">8,534,201 comments</div></div></div>
+  <div class="ci"><div class="ci-dot" style="background:#f97316;box-shadow:0 0 8px #f9731666"></div><div><div class="ci-name">Campaign B: Lead-Gen Firm #1</div><div class="ci-count" style="color:rgba(249,115,22,0.5)">4,211,087 comments</div></div></div>
+  <div class="ci"><div class="ci-dot" style="background:#ec4899;box-shadow:0 0 8px #ec489966"></div><div><div class="ci-name">Campaign C: Bot Network</div><div class="ci-count" style="color:rgba(236,72,153,0.5)">3,892,445 comments</div></div></div>
+  <div class="ci"><div class="ci-dot" style="background:#a855f7;box-shadow:0 0 8px #a855f766"></div><div><div class="ci-name">Campaign D: Student Script</div><div class="ci-count" style="color:rgba(168,85,247,0.5)">1,562,267 comments</div></div></div>
+</div>
+
+<script>
+const CLUSTERS = [
+  { label:"Campaign A", color:"#ef4444", x:0.22, y:0.32, r:130 },
+  { label:"Campaign B", color:"#f97316", x:0.68, y:0.28, r:110 },
+  { label:"Campaign C", color:"#ec4899", x:0.25, y:0.72, r:100 },
+  { label:"Campaign D", color:"#a855f7", x:0.65, y:0.74, r:90 },
+  { label:"Organic: Pro",  color:"#22c55e", x:0.46, y:0.50, r:70 },
+  { label:"Organic: Anti", color:"#10b981", x:0.85, y:0.48, r:40 },
+  { label:"Technical",     color:"#06b6d4", x:0.10, y:0.50, r:30 },
+];
+
+const COMMENTS = [
+  "As a small business owner I depend on an open internet",
+  "Net neutrality ensures ISPs cannot prioritize their own content",
+  "I am a teacher and rely on equal access to resources",
+  "Please protect net neutrality my startup cannot afford fast lanes",
+  "The internet should remain a level playing field",
+  "I work from home and need reliable unthrottled access",
+  "Without net neutrality corporations will control access",
+  "As a veteran I rely on telehealth services",
+  "Net neutrality is essential for free speech",
+  "Rural communities will suffer most without protections",
+  "The FCC should protect consumers not cable profits",
+  "An open internet drives innovation and growth",
+  "The regulatory framework is outdated and stifles investment",
+  "Removing Title II will encourage infrastructure development",
+  "The free market should determine internet policy",
+  "I support the proposal to restore internet freedom",
+  "Title II imposes unnecessary burdens on providers",
+  "Deregulation will lead to lower prices for consumers",
+  "Government should not regulate the internet",
+  "The internet thrived for decades without Title II",
+];
+
+// ─── STATE ───────────────────────────────────────────────────────────
+// waiting → streaming → contaminating → (auto) clustering → analyzed → reset
+const N = 500;
+let phase = "waiting";
+let particles = [];
+let W, H, ctx, dpr;
+let counter = 0;
+let shakeX = 0, shakeY = 0, shakeDecay = 0;
+let clusterGlow = 0, connectionAlpha = 0, morphT = 0;
+let clusterTimeout = null;
+
+const lerp = (a,b,t) => a+(b-a)*t;
+const hex = h => ({ r:parseInt(h.slice(1,3),16), g:parseInt(h.slice(3,5),16), b:parseInt(h.slice(5,7),16) });
+const rand = (a=0,b=1) => a+Math.random()*(b-a);
+
+function init() {
+  particles = [];
+  for (let i = 0; i < N; i++) {
+    const fake = Math.random() < 0.82;
+    const ci = fake ? Math.floor(Math.random()*4) : 4+Math.floor(Math.random()*3);
+    particles.push({
+      x: rand(0, W), y: -rand(20, H*4),
+      vx: rand(-0.2, 0.2), vy: rand(1.5, 4),
+      text: COMMENTS[Math.floor(Math.random()*COMMENTS.length)],
+      fake, ci,
+      alpha: 0, maxAlpha: rand(0.5, 0.9),
+      colorT: 0, fontSize: rand(9, 13),
+      tx: 0, ty: 0, prevX: [], prevY: [],
+    });
+  }
+}
+
+function resize() {
+  dpr = window.devicePixelRatio || 1;
+  W = window.innerWidth; H = window.innerHeight;
+  const c = document.getElementById("c");
+  c.width = W*dpr; c.height = H*dpr;
+  c.style.width = W+"px"; c.style.height = H+"px";
+  ctx = c.getContext("2d");
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+}
+
+function shake(n) { shakeDecay = n; }
+
+function triggerClustering() {
+  phase = "clustering"; morphT = 0;
+  document.getElementById("phase-fill").style.width = "75%";
+  document.getElementById("phase-fill").style.background = "#06b6d4";
+  document.getElementById("bottom-hint").textContent = "";
+  document.getElementById("counter").textContent = "";
+  shake(15);
+
+  const gw = W - 380;
+  particles.forEach(p => {
+    p.vy = 0;
+    const cl = CLUSTERS[p.ci];
+    const angle = rand(0, Math.PI*2), d = rand(0, cl.r);
+    p.tx = cl.x * gw + Math.cos(angle) * d;
+    p.ty = cl.y * H + Math.sin(angle) * d;
+    const dx = p.x - W/2, dy = p.y - H/2;
+    const dist = Math.hypot(dx, dy) || 1;
+    p.vx = (dx/dist) * rand(4, 10);
+    p.vy = (dy/dist) * rand(4, 10);
+    p.prevX = []; p.prevY = [];
+    p.colorT = Math.max(p.colorT, 0.5);
+  });
+
+  setTimeout(() => document.getElementById("sidebar").classList.add("show"), 1600);
+  setTimeout(() => {
+    phase = "analyzed";
+    document.getElementById("phase-fill").style.width = "100%";
+    document.getElementById("phase-fill").style.background = "#22c55e";
+    document.getElementById("bottom-hint").textContent = "click to reset";
+  }, 4500);
+}
+
+function advance() {
+  if (phase === "waiting") {
+    phase = "streaming";
+    document.getElementById("hint").style.opacity = "0";
+    document.getElementById("phase-fill").style.width = "25%";
+    document.getElementById("phase-fill").style.background = "rgba(255,255,255,0.2)";
+    document.getElementById("bottom-hint").textContent = "click to reveal";
+  }
+  else if (phase === "streaming") {
+    phase = "contaminating";
+    document.getElementById("phase-fill").style.width = "50%";
+    document.getElementById("phase-fill").style.background = "#ef4444";
+    document.getElementById("bottom-hint").textContent = "";
+    const cx = W/2, cy = H/2, now = performance.now();
+    particles.forEach(p => {
+      if (p.fake) {
+        const d = Math.hypot(p.x - cx, p.y - cy);
+        p._colorStart = now + (d / Math.max(W,H)) * 2000 + rand(0,400);
+      }
+    });
+    clusterTimeout = setTimeout(() => triggerClustering(), 3500);
+  }
+  else if (phase === "contaminating" || phase === "chaos") {
+    if (clusterTimeout) { clearTimeout(clusterTimeout); clusterTimeout = null; }
+    triggerClustering();
+  }
+  else if (phase === "analyzed") {
+    phase = "waiting";
+    counter = 0; clusterGlow = 0; connectionAlpha = 0; morphT = 0;
+    shakeX = 0; shakeY = 0; shakeDecay = 0;
+    if (clusterTimeout) { clearTimeout(clusterTimeout); clusterTimeout = null; }
+    document.getElementById("hint").style.opacity = "1";
+    document.getElementById("phase-fill").style.width = "0%";
+    document.getElementById("counter").textContent = "";
+    document.getElementById("bottom-hint").textContent = "";
+    document.getElementById("sidebar").classList.remove("show");
+    init();
+  }
+}
+
+// ─── RENDER ──────────────────────────────────────────────────────────
+function render() {
+  const now = performance.now();
+  ctx.save();
+
+  if (shakeDecay > 0.1) {
+    shakeX = (Math.random()-0.5) * shakeDecay;
+    shakeY = (Math.random()-0.5) * shakeDecay;
+    shakeDecay *= 0.92;
+    ctx.translate(shakeX, shakeY);
+  }
+
+  if (phase === "waiting") {
+    ctx.fillStyle = "#000"; ctx.fillRect(0, 0, W, H);
+    ctx.restore(); requestAnimationFrame(render); return;
+  }
+
+  ctx.fillStyle = phase === "clustering" ? "rgba(0,0,0,0.15)" : "rgba(0,0,0,0.3)";
+  ctx.fillRect(-20, -20, W+40, H+40);
+
+  if (phase === "streaming" || phase === "contaminating" || phase === "chaos") {
+    counter = lerp(counter, 22000000, 0.008);
+    document.getElementById("counter").textContent = Math.floor(counter).toLocaleString();
+  }
+
+  if (phase === "contaminating") {
+    if (particles.filter(p => p.fake).every(p => p.colorT > 0.9)) phase = "chaos";
+  }
+
+  if (phase === "clustering" || phase === "analyzed") {
+    clusterGlow = lerp(clusterGlow, 1, 0.02);
+    connectionAlpha = lerp(connectionAlpha, 0.1, 0.01);
+    morphT = lerp(morphT, 1, 0.025);
+  }
+
+  const gw = W - (phase === "clustering" || phase === "analyzed" ? 380 : 0);
+
+  // ─── UPDATE ────────────────────────────────────────────────────
+  for (const p of particles) {
+    if (phase === "streaming" || phase === "contaminating" || phase === "chaos") {
+      p.y += p.vy; p.x += p.vx;
+      if (p.alpha < p.maxAlpha) p.alpha += 0.02;
+      if (p.y > H + 40) { p.y = -40; p.x = rand(0, W); }
+      if (phase === "contaminating" && p.fake && now >= (p._colorStart||Infinity))
+        p.colorT = Math.min(1, p.colorT + 0.04);
+      if (phase === "chaos") {
+        if (p.fake) p.colorT = Math.min(1, p.colorT + 0.05);
+        p.vx += (Math.random()-0.5)*0.1; p.vy += (Math.random()-0.5)*0.05;
+      }
+    }
+    if (phase === "clustering" || phase === "analyzed") {
+      p.colorT = Math.min(1, p.colorT + 0.05);
+      const spd = Math.hypot(p.vx, p.vy);
+      if (spd > 0.5) {
+        p.prevX.push(p.x); p.prevY.push(p.y);
+        if (p.prevX.length > 8) { p.prevX.shift(); p.prevY.shift(); }
+      } else if (p.prevX.length > 0) { p.prevX.length = 0; p.prevY.length = 0; }
+      const dx = p.tx - p.x, dy = p.ty - p.y;
+      const k = 0.008, c = 2 * Math.sqrt(k) * 1.05;
+      p.vx += dx * k - p.vx * c;
+      p.vy += dy * k - p.vy * c;
+      p.x += p.vx; p.y += p.vy;
+    }
+  }
+
+  // ─── CONNECTIONS ───────────────────────────────────────────────
+  if (connectionAlpha > 0.01 && phase === "analyzed") {
+    ctx.lineWidth = 0.4;
+    for (let ci = 0; ci < CLUSTERS.length; ci++) {
+      const rgb = hex(CLUSTERS[ci].color);
+      ctx.strokeStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},${connectionAlpha * 0.7})`;
+      ctx.beginPath();
+      const members = particles.filter(p => p.ci === ci);
+      let drawn = 0;
+      for (let i = 0; i < members.length && drawn < 30; i += 2) {
+        for (let j = i+2; j < members.length && drawn < 30; j += 2) {
+          if (Math.hypot(members[i].x-members[j].x, members[i].y-members[j].y) > 45) continue;
+          ctx.moveTo(members[i].x, members[i].y); ctx.lineTo(members[j].x, members[j].y);
+          drawn++;
+        }
+      }
+      ctx.stroke();
+    }
+  }
+
+  // ─── HALOS ─────────────────────────────────────────────────────
+  if (clusterGlow > 0.05 && phase === "analyzed") {
+    for (const cl of CLUSTERS) {
+      const cx = cl.x * gw, cy = cl.y * H, rgb = hex(cl.color);
+      ctx.save();
+      ctx.shadowColor = `rgb(${rgb.r},${rgb.g},${rgb.b})`;
+      ctx.shadowBlur = 60 * clusterGlow;
+      ctx.beginPath(); ctx.arc(cx, cy, cl.r * 0.3, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},${0.03 * clusterGlow})`;
+      ctx.fill(); ctx.restore();
+    }
+  }
+
+  // ─── PARTICLES ─────────────────────────────────────────────────
+  for (const p of particles) {
+    const base = hex(CLUSTERS[p.ci].color);
+    const r = Math.round(lerp(190, base.r, p.colorT));
+    const g = Math.round(lerp(190, base.g, p.colorT));
+    const b = Math.round(lerp(190, base.b, p.colorT));
+    const speed = Math.hypot(p.vx, p.vy);
+
+    // Trails
+    if (phase === "clustering" && p.prevX.length > 2 && speed > 1) {
+      for (let t = 0; t < p.prevX.length - 1; t++) {
+        const ta = (t / p.prevX.length) * 0.15 * Math.min(speed/10, 1);
+        ctx.beginPath(); ctx.arc(p.prevX[t], p.prevY[t], 1.5, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(${r},${g},${b},${ta})`; ctx.fill();
+      }
+    }
+
+    if (phase === "clustering" || phase === "analyzed") {
+      const m = Math.min(1, morphT * 1.5);
+      if (m < 0.95) {
+        const ta = p.alpha * (1 - m) * 0.7;
+        ctx.save(); ctx.globalAlpha = ta;
+        ctx.font = `${p.fontSize * (1 - m*0.6)}px "SF Mono","Fira Code","Courier New",monospace`;
+        ctx.fillStyle = `rgb(${r},${g},${b})`;
+        ctx.fillText(p.text.slice(0, Math.max(1, Math.floor(p.text.length*(1-m)))), p.x, p.y);
+        ctx.restore();
+      }
+      const da = m * p.alpha;
+      const coreR = lerp(1.5, 3.5, m);
+      ctx.beginPath(); ctx.arc(p.x, p.y, coreR, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${r},${g},${b},${da * 0.9})`; ctx.fill();
+      if (m > 0.5 && speed < 3 && da > 0.1) {
+        ctx.save(); ctx.shadowColor = `rgb(${r},${g},${b})`;
+        ctx.shadowBlur = 12 * clusterGlow;
+        ctx.beginPath(); ctx.arc(p.x, p.y, coreR*0.8, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(${r},${g},${b},${da * 0.4})`; ctx.fill();
+        ctx.restore();
+      }
+    } else {
+      ctx.font = `${p.fontSize}px "SF Mono","Fira Code","Courier New",monospace`;
+      ctx.fillStyle = `rgba(${r},${g},${b},${p.alpha})`;
+      ctx.fillText(p.text.length > 60 ? p.text.slice(0,57)+"..." : p.text, p.x, p.y);
+      if (p.colorT > 0.3 && p.fake) {
+        ctx.fillStyle = `rgba(${r},${g},${b},${p.colorT * 0.08})`;
+        ctx.fillRect(0, p.y - p.fontSize, W, p.fontSize + 4);
+      }
+    }
+  }
+
+  // ─── LABELS ────────────────────────────────────────────────────
+  if (clusterGlow > 0.3 && phase === "analyzed") {
+    const la = Math.min(1, (clusterGlow - 0.3) / 0.7);
+    for (const cl of CLUSTERS) {
+      const cx = cl.x * gw, cy = cl.y * H, rgb = hex(cl.color);
+      ctx.textAlign = "center";
+      ctx.font = `bold 11px "SF Mono",monospace`;
+      ctx.fillStyle = `rgba(${rgb.r},${rgb.g},${rgb.b},${0.85 * la})`;
+      ctx.fillText(cl.label.toUpperCase(), cx, cy - cl.r - 12);
+      ctx.textAlign = "left";
+    }
+  }
+
+  // ─── VIGNETTE ──────────────────────────────────────────────────
+  const vg = ctx.createRadialGradient(W/2, H/2, H*0.3, W/2, H/2, H*0.9);
+  vg.addColorStop(0, "rgba(0,0,0,0)"); vg.addColorStop(1, "rgba(0,0,0,0.5)");
+  ctx.fillStyle = vg; ctx.fillRect(-20, -20, W+40, H+40);
+
+  ctx.restore();
+  requestAnimationFrame(render);
+}
+
+// ─── BOOT ────────────────────────────────────────────────────────────
+window.addEventListener("resize", resize);
+document.addEventListener("click", e => { e.preventDefault(); advance(); });
+document.addEventListener("keydown", e => {
+  if (e.key===" "||e.key==="Enter"||e.key==="ArrowRight") { e.preventDefault(); advance(); }
+});
+document.addEventListener("touchstart", e => { e.preventDefault(); advance(); });
+resize(); init();
+ctx.fillStyle = "#000"; ctx.fillRect(0, 0, W, H);
+requestAnimationFrame(render);
+</script>
+</body>
+</html>
