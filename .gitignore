@@ -36,10 +36,9 @@ dist/
 .env.*.local
 *.key
 
-# Database & cache (large binary files)
-backend/data/*.db
-backend/data/*.db-*
-backend/data/*.sqlite
+# Database write-ahead log (transient)
+backend/data/*.db-shm
+backend/data/*.db-wal
 backend/data/*.sqlite-*
 
 # Logs
