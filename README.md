@@ -34,6 +34,8 @@ Built for the ASES Pitch Competition.
 
 ## Setup
 
+### Backend (Python pipeline)
+
 ```bash
 cd backend
 pip install -r requirements.txt
@@ -43,6 +45,23 @@ Set API keys
 export VOYAGE_API_KEY="..."
 export ANTHROPIC_API_KEY="..."
 export REGULATIONS_GOV_API_KEY="..."  from api.data.gov
+```
+
+The repo ships with a pre-computed SQLite cache (`backend/data/docketlens.db`)
+containing 2900 synthetic comments and their Voyage embeddings, plus
+pre-computed analysis results in `backend/data/*_results.json`. This means you
+can run the pipeline immediately without paying for embedding/ingestion API calls.
+
+### Frontend (canvas demo)
+
+```bash
+# The standalone canvas demo is just a single HTML file
+open demo.html
+
+# Or for the Next.js scaffold:
+cd demo
+npm install   # ~30 sec (node_modules excluded from repo, regenerable)
+npm run dev
 ```
 
 ## Usage
