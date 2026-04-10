@@ -23,7 +23,6 @@ body {
   color: var(--foreground);
   font-family: var(--font-mono), "SF Mono", "Fira Code", monospace;
   overflow: hidden;
-  cursor: none;
 }
 
 ::selection {
