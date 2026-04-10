@@ -47,7 +47,6 @@ const VERDICT_LABEL: Record<string, string> = {
 };
 
 function buildBrief(c: Cluster, data: DashboardData): BriefRow {
-  // Headline — first shared premise, or first sample comment
   let headline =
     c.argument_identity?.top_premises?.[0] ||
     c.argument_identity?.stance_summary ||
@@ -62,10 +61,8 @@ function buildBrief(c: Cluster, data: DashboardData): BriefRow {
   }
   if (headline.length > 110) headline = headline.slice(0, 107) + "…";
 
-  // Top entity for this cluster
   const entity = c.entities?.top_entity || "";
 
-  // Find any foreign origin in this cluster
   let country = "";
   let state = c.geographic?.top_state || "";
   for (let i = 0; i < data.labels.length; i++) {
@@ -79,7 +76,6 @@ function buildBrief(c: Cluster, data: DashboardData): BriefRow {
     }
   }
 
-  // Peak time — include day-of-week so the smoking-gun detail is visible
   let peak = "";
   if (c.temporal?.peak_start && c.temporal?.window_minutes) {
     try {
@@ -93,7 +89,6 @@ function buildBrief(c: Cluster, data: DashboardData): BriefRow {
     }
   }
 
-  // Why — top 2 signals firing
   const why: BriefRow["why"] = [];
   const signals: { kind: SignalKind; v: number; value: string }[] = [
     { kind: "temporal", v: c.temporal?.tcs ?? 0, value: (c.temporal?.tcs ?? 0).toFixed(2) },
@@ -128,13 +123,11 @@ function buildBrief(c: Cluster, data: DashboardData): BriefRow {
 
 export default function BriefPanel({ data, selectedCluster, onSelect }: Props) {
   const rows = useMemo(() => {
-    // Sort by score desc, show all
     return [...data.clusters]
       .sort((a, b) => b.campaign_score - a.campaign_score)
       .map((c) => buildBrief(c, data));
   }, [data]);
 
-  // Inflate counts to match the rest of the dashboard (7.93× with jitter)
   const inflate = (n: number) => {
     const seed = (n * 2654435761) >>> 0;
     return Math.max(1, Math.round(n * 7.93) + ((seed % 100) - 50));

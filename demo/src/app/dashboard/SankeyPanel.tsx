@@ -35,12 +35,6 @@ export default function SankeyPanel({
   onClearAll,
 }: Props) {
   const layout = useMemo(() => {
-    // Build sankey: SOURCE → CLUSTER (ALL) → COMMUNITY → VERDICT
-    // Source levels: just 1 source node ("comments")
-    // Cluster level: ALL clusters by size (largest first)
-    // Community level: 4 communities (or "no_community")
-    // Verdict level: 3 (manufactured / uncertain / organic)
-
     const topClusters = [...data.clusters].sort((a, b) => b.n_comments - a.n_comments);
 
     interface Node {
@@ -81,10 +75,8 @@ export default function SankeyPanel({
     addNode({ name: "UNCERTAIN", kind: "verdict", color: VERDICT_COLOR.uncertain });
     addNode({ name: "ORGANIC", kind: "verdict", color: VERDICT_COLOR.organic });
 
-    // Build cluster → community map by checking which community contains each cluster's labels
     const labels = data.labels;
     const memberCommunities: Record<number, number[]> = {};
-    // For each cluster, find which community has the most overlap
     topClusters.forEach((c) => {
       const memberSet = new Set(
         data.comment_ids.filter((_, i) => labels[i] === c.cluster_id)
@@ -97,13 +89,11 @@ export default function SankeyPanel({
         });
         counts[comm.community_id] = overlap;
       });
-      // Pick the dominant community (or none)
       const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
       const top = sorted[0];
       memberCommunities[c.cluster_id] = top && top[1] > 0 ? [parseInt(top[0])] : [];
     });
 
-    // Links
     interface Link {
       source: number;
       target: number;
@@ -113,7 +103,6 @@ export default function SankeyPanel({
     }
     const links: Link[] = [];
 
-    // SOURCE → CLUSTERS (proportional)
     topClusters.forEach((c) => {
       links.push({
         source: nodeIndex["ALL COMMENTS"],
@@ -122,11 +111,9 @@ export default function SankeyPanel({
       });
     });
 
-    // CLUSTERS → COMMUNITIES
     topClusters.forEach((c) => {
       const commIds = memberCommunities[c.cluster_id] || [];
       if (commIds.length === 0) {
-        // Direct to verdict
         const verdictName =
           c.classification === "campaign"
             ? "MANUFACTURED"
@@ -151,7 +138,6 @@ export default function SankeyPanel({
       }
     });
 
-    // COMMUNITIES → VERDICTS (all manufactured by definition)
     data.communities.forEach((c) => {
       links.push({
         source: nodeIndex[communityLabel(c, data)],
@@ -166,7 +152,7 @@ export default function SankeyPanel({
       .nodeAlign(sankeyJustify)
       .extent([
         [88, 4],
-        [width - 110, height - 14],
+        [width - 140, height - 14],
       ]);
 
     try {
@@ -180,8 +166,6 @@ export default function SankeyPanel({
     }
   }, [data, width, height]);
 
-  // Resolve which community a cluster belongs to (via dominant overlap) so
-  // selecting a community can highlight its child clusters and vice-versa.
   const clusterCommunityMap = useMemo(() => {
     const map = new Map<number, number>();
     data.clusters.forEach((c) => {
@@ -204,7 +188,6 @@ export default function SankeyPanel({
   const linkPath = sankeyLinkHorizontal();
   const hasSelection = selectedCluster != null || selectedCommunity != null;
 
-  // Decide whether a node is "in focus" given the current selection
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const nodeInFocus = (n: any): boolean => {
     if (!hasSelection) return true;
@@ -220,7 +203,6 @@ export default function SankeyPanel({
       return false;
     }
     if (n.kind === "verdict") {
-      // Always show verdict if anything flows to it from focused chain
       return true;
     }
     return false;
@@ -241,7 +223,6 @@ export default function SankeyPanel({
       className="dl-svg"
       style={{ display: "block" }}
     >
-      {/* Links */}
       {layout.links.map((link, i) => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const source = link.source as any;
@@ -261,7 +242,6 @@ export default function SankeyPanel({
           />
         );
       })}
-      {/* Nodes */}
       {layout.nodes.map((node, i) => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const n = node as any;
@@ -301,7 +281,6 @@ export default function SankeyPanel({
               stroke={isSel ? "#FFFFFF" : "none"}
               strokeWidth={isSel ? 1.4 : 0}
             />
-            {/* Larger invisible hit target for clusters (which are tiny) */}
             {clickable && (
               <rect
                 x={n.x0 - 4}
@@ -327,25 +306,22 @@ export default function SankeyPanel({
                 {n.name}
               </text>
             )}
-            {/* Verdict labels — rotated 90° so they sit vertically against the bar */}
             {showLabel && n.kind === "verdict" && (
               <text
-                x={(n.x0 + n.x1) / 2}
+                x={n.x1 + 4}
                 y={(n.y0 + n.y1) / 2}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                fontSize="7"
+                dy="0.35em"
+                textAnchor="start"
+                fontSize="6"
                 fontFamily="IBM Plex Mono, monospace"
                 fontWeight="700"
                 fill={isSel ? "#FFFFFF" : n.color}
                 opacity={focused ? 1 : 0.3}
-                transform={`rotate(-90, ${(n.x0 + n.x1) / 2}, ${(n.y0 + n.y1) / 2})`}
                 style={{ pointerEvents: "none" }}
               >
                 {n.name}
               </text>
             )}
-            {/* Source node — show "CLICK TO RESET" hint when filtered */}
             {n.kind === "source" && hasSelection && (
               <text
                 x={n.x0 + (n.x1 - n.x0) / 2}

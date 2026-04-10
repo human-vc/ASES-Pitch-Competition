@@ -33,8 +33,6 @@ export default function ParCoordsPanel({
   selectedCluster,
   onSelect,
 }: Props) {
-  // Live-measure the container so the SVG viewBox matches actual pixels.
-  // Avoids the text-stretching artefact from preserveAspectRatio="none".
   const containerRef = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ width: 840, height: 244 });
   useEffect(() => {
@@ -64,13 +62,6 @@ export default function ParCoordsPanel({
   const [hoverAxis, setHoverAxis] = useState<number | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
-  // Padding layout:
-  //  [axisLabels row] 14px
-  //  [campaign strip header] 14px
-  //  [campaign strip] stripH
-  //  [gap] 24px (also holds organic strip label)
-  //  [organic strip] stripH
-  //  [hint row] 16px
   const padAxisTop = 12;
   const padStripHeader = 2;
   const padLeft = 44;
@@ -85,7 +76,6 @@ export default function ParCoordsPanel({
   const axisX = (i: number) => padLeft + (i / (AXES.length - 1)) * innerW;
   const valY = (v: number, stripTop: number) => stripTop + (1 - v) * stripH;
 
-  // Split clusters
   const { campaignClusters, organicClusters } = useMemo(() => {
     const camp: Cluster[] = [];
     const org: Cluster[] = [];
@@ -96,7 +86,6 @@ export default function ParCoordsPanel({
     return { campaignClusters: camp, organicClusters: org };
   }, [data]);
 
-  // Per-axis median for each strip — the "fingerprint"
   const computeMedian = (clusters: Cluster[]) =>
     AXES.map((a) => {
       if (clusters.length === 0) return 0;
@@ -107,7 +96,6 @@ export default function ParCoordsPanel({
   const campMedian = useMemo(() => computeMedian(campaignClusters), [campaignClusters]);
   const orgMedian = useMemo(() => computeMedian(organicClusters), [organicClusters]);
 
-  // Check if a cluster passes all brushes
   const passesBrushes = (cluster: Cluster): boolean => {
     for (const [idxStr, br] of Object.entries(brushes)) {
       const idx = parseInt(idxStr);
@@ -119,11 +107,9 @@ export default function ParCoordsPanel({
 
   const activeBrushCount = Object.keys(brushes).length;
 
-  // Matches counts
   const campaignMatches = campaignClusters.filter(passesBrushes).length;
   const organicMatches = organicClusters.filter(passesBrushes).length;
 
-  // Mouse handlers for brushing
   const handleMouseDown = (e: React.MouseEvent<SVGSVGElement>) => {
     const svg = svgRef.current;
     if (!svg) return;
@@ -131,7 +117,6 @@ export default function ParCoordsPanel({
     const mx = ((e.clientX - rect.left) / rect.width) * width;
     const my = ((e.clientY - rect.top) / rect.height) * height;
 
-    // Find nearest axis
     let nearestAxis = 0;
     let minDist = Infinity;
     AXES.forEach((_, i) => {
@@ -141,9 +126,8 @@ export default function ParCoordsPanel({
         nearestAxis = i;
       }
     });
-    if (minDist > 24) return; // too far from any axis
+    if (minDist > 24) return;
 
-    // Determine which strip
     let strip: "campaign" | "organic";
     if (my >= campStripTop && my <= campStripTop + stripH) {
       strip = "campaign";
@@ -167,11 +151,10 @@ export default function ParCoordsPanel({
     const y0 = Math.max(stripTop, Math.min(dragState.startY, my));
     const y1 = Math.min(stripTop + stripH, Math.max(dragState.startY, my));
 
-    // Convert pixel range → value range (y is inverted)
     const max = 1 - (y0 - stripTop) / stripH;
     const min = 1 - (y1 - stripTop) / stripH;
 
-    if (Math.abs(y1 - y0) < 4) return; // too small, ignore
+    if (Math.abs(y1 - y0) < 4) return;
 
     setBrushes((prev) => ({ ...prev, [dragState.axisIdx]: { min, max } }));
   };
@@ -190,7 +173,6 @@ export default function ParCoordsPanel({
 
   const clearAllBrushes = () => setBrushes({});
 
-  // Render a strip of clusters
   const renderStrip = (
     clusters: Cluster[],
     stripTop: number,
@@ -207,7 +189,6 @@ export default function ParCoordsPanel({
 
     return (
       <g>
-        {/* Strip background — pure-black gradient panel feel */}
         <rect
           x={padLeft}
           y={stripTop}
@@ -218,7 +199,6 @@ export default function ParCoordsPanel({
           strokeWidth={0.5}
         />
 
-        {/* Threshold band — anything above 0.5 is suspicious */}
         <rect
           x={padLeft}
           y={valY(1, stripTop)}
@@ -249,7 +229,6 @@ export default function ParCoordsPanel({
           THRESHOLD 0.5
         </text>
 
-        {/* Horizontal gridlines */}
         {[0.25, 0.75].map((v, i) => (
           <line
             key={`g-${stripTop}-${i}`}
@@ -262,7 +241,6 @@ export default function ParCoordsPanel({
           />
         ))}
 
-        {/* Vertical axes */}
         {AXES.map((a, i) => {
           const isHoverAxis = hoverAxis === i;
           return (
@@ -279,7 +257,6 @@ export default function ParCoordsPanel({
           );
         })}
 
-        {/* Strip label — inside strip at top-left */}
         <text
           x={padLeft + 4}
           y={stripTop + 8}
@@ -303,7 +280,6 @@ export default function ParCoordsPanel({
           {matchCount} / {clusters.length}
         </text>
 
-        {/* Individual cluster lines (pass-through first, dimmed) */}
         {[...clusters]
           .sort((a, b) => {
             const ap = passesBrushes(a) ? 1 : 0;
@@ -350,7 +326,6 @@ export default function ParCoordsPanel({
             );
           })}
 
-        {/* MEDIAN PROFILE — the "fingerprint" overlay */}
         <polyline
           points={medianPts}
           fill="none"
@@ -360,7 +335,6 @@ export default function ParCoordsPanel({
           strokeLinejoin="round"
           style={{ pointerEvents: "none" }}
         />
-        {/* Median dots at each axis */}
         {medianProfile.map((v, i) => (
           <circle
             key={`md-${i}`}
@@ -374,7 +348,6 @@ export default function ParCoordsPanel({
           />
         ))}
 
-        {/* Brush rectangles on this strip */}
         {Object.entries(brushes).map(([idxStr, br]) => {
           const idx = parseInt(idxStr);
           const x = axisX(idx) - 8;
@@ -404,7 +377,6 @@ export default function ParCoordsPanel({
     );
   };
 
-  // Hover cluster details
   const hoveredCluster = hoverCluster != null
     ? data.clusters.find((c) => c.cluster_id === hoverCluster)
     : null;
@@ -431,19 +403,16 @@ export default function ParCoordsPanel({
       style={{ userSelect: "none", display: "block" }}
     >
       <defs>
-        {/* Median fingerprint gradient — red for campaign */}
         <linearGradient id="dl-pc-median-camp" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%" stopColor="#FF6464" />
           <stop offset="100%" stopColor="#FF1A1A" />
         </linearGradient>
-        {/* Median fingerprint gradient — green for organic */}
         <linearGradient id="dl-pc-median-org" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%" stopColor="#00D26A" />
           <stop offset="100%" stopColor="#FFB800" />
         </linearGradient>
       </defs>
 
-      {/* Axis labels at very top with hover detection */}
       {AXES.map((a, i) => {
         const isHov = hoverAxis === i;
         const isBrushed = !!brushes[i];
@@ -454,7 +423,6 @@ export default function ParCoordsPanel({
             onMouseLeave={() => setHoverAxis(null)}
             style={{ cursor: "default" }}
           >
-            {/* Hit target */}
             <rect
               x={axisX(i) - 18}
               y={0}
@@ -478,7 +446,6 @@ export default function ParCoordsPanel({
         );
       })}
 
-      {/* Clear all button — top right */}
       {activeBrushCount > 0 && (
         <g
           style={{ cursor: "pointer" }}
@@ -511,7 +478,6 @@ export default function ParCoordsPanel({
         </g>
       )}
 
-      {/* Campaign strip (top) */}
       {renderStrip(
         campaignClusters,
         campStripTop,
@@ -522,7 +488,6 @@ export default function ParCoordsPanel({
         "dl-pc-median-camp"
       )}
 
-      {/* Organic strip (bottom) */}
       {renderStrip(
         organicClusters,
         orgStripTop,
@@ -533,7 +498,6 @@ export default function ParCoordsPanel({
         "dl-pc-median-org"
       )}
 
-      {/* Y-axis value labels (shown once on left side for both strips) */}
       <text x={padLeft - 4} y={campStripTop + 3} textAnchor="end" fontSize="6" fontFamily="IBM Plex Mono, monospace" fill="#6B5D3F">1.0</text>
       <text x={padLeft - 4} y={campStripTop + stripH / 2 + 2} textAnchor="end" fontSize="6" fontFamily="IBM Plex Mono, monospace" fill="#6B5D3F">0.5</text>
       <text x={padLeft - 4} y={campStripTop + stripH} textAnchor="end" fontSize="6" fontFamily="IBM Plex Mono, monospace" fill="#6B5D3F">0.0</text>
@@ -542,7 +506,6 @@ export default function ParCoordsPanel({
       <text x={padLeft - 4} y={orgStripTop + stripH} textAnchor="end" fontSize="6" fontFamily="IBM Plex Mono, monospace" fill="#6B5D3F">0.0</text>
 
 
-      {/* Hover cluster readout — replaces hint when hovering */}
       {hoveredCluster && (
         <text
           x={padLeft + 4}

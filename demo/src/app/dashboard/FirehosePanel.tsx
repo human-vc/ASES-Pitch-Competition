@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { Cluster, DashboardData } from "./types";
 
 interface Props {
@@ -8,6 +8,8 @@ interface Props {
   selectedCluster: number | null;
   onSelect: (id: number) => void;
   selectedCountry?: string | null;
+  ingesting?: boolean;
+  onIngestComment?: (clusterId: number) => void;
 }
 
 interface FirehoseEntry {
@@ -42,17 +44,15 @@ const REASONS = [
   { key: "foreign", color: "#FF1A1A", label: "FOREIGN ORIGIN" },
 ];
 
-export default function FirehosePanel({ data, selectedCluster, onSelect, selectedCountry }: Props) {
+export default function FirehosePanel({ data, selectedCluster, onSelect, selectedCountry, ingesting, onIngestComment }: Props) {
   const [now, setNow] = useState<Date>(new Date());
   const [paused, setPaused] = useState(false);
   const [scrollOffset, setScrollOffset] = useState(0);
 
-  // Build the entry pool from real comment data
   const pool = useMemo(() => {
     const entries: FirehoseEntry[] = [];
     const clusterMap = new Map(data.clusters.map((c) => [c.cluster_id, c]));
 
-    // Get all comment IDs that belong to a flagged cluster
     data.comment_ids.forEach((cid, i) => {
       const lbl = data.labels[i];
       if (lbl === -1) return;
@@ -60,12 +60,9 @@ export default function FirehosePanel({ data, selectedCluster, onSelect, selecte
       if (!cluster) return;
       const cd = data.comments_data?.[cid];
       if (!cd?.text || cd.text.length < 20) return;
-      // Country filter — when active, restrict to that country only
       if (selectedCountry && cd.country !== selectedCountry) return;
-      // Only include high-score clusters or organic for variety
       if (cluster.classification === "campaign" || (cluster.classification === "organic" && Math.random() < 0.05) || selectedCountry) {
 
-        // Pick a reason based on cluster strengths
         let reason = REASONS[0];
         if (cd.country) reason = REASONS.find((r) => r.key === "foreign")!;
         else if ((cluster.temporal?.tcs ?? 0) > 0.7) reason = REASONS.find((r) => r.key === "burst")!;
@@ -91,21 +88,32 @@ export default function FirehosePanel({ data, selectedCluster, onSelect, selecte
       }
     });
 
-    // Shuffle for variety
     return entries.sort(() => Math.random() - 0.5).slice(0, 200);
   }, [data, selectedCountry]);
 
-  // Auto-scroll
+  const ingestCallbackRef = useRef(onIngestComment);
+  ingestCallbackRef.current = onIngestComment;
+  const poolRef = useRef(pool);
+  poolRef.current = pool;
+
+  const scrollSpeed = ingesting ? 350 : 1100;
+  const scrollOffsetRef = useRef(0);
   useEffect(() => {
     if (paused) return;
     const id = setInterval(() => {
-      setScrollOffset((o) => (o + 1) % Math.max(1, pool.length));
+      const p = poolRef.current;
+      const next = (scrollOffsetRef.current + 1) % Math.max(1, p.length);
+      scrollOffsetRef.current = next;
+      setScrollOffset(next);
       setNow(new Date());
-    }, 1100);
+      // Fire outside setState updater to avoid "cannot update while rendering" error
+      if (ingestCallbackRef.current && p[next]) {
+        ingestCallbackRef.current(p[next].cluster_id);
+      }
+    }, scrollSpeed);
     return () => clearInterval(id);
-  }, [paused, pool.length]);
+  }, [paused, scrollSpeed]);
 
-  // Visible window of entries (10 at a time, scrolling)
   const VISIBLE = 9;
   const visibleEntries = useMemo(() => {
     const out: FirehoseEntry[] = [];

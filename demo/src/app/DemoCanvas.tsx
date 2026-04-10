@@ -344,10 +344,32 @@ export default function DemoCanvas() {
         const textX = sx + 28;
         let ty = 50;
 
+        // Eye logo
+        const eyeX = textX;
+        const eyeY = ty - 4;
+        ctx.strokeStyle = `rgba(255, 160, 40, ${0.95 * so})`;
+        ctx.lineWidth = 1.8;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+        ctx.beginPath();
+        ctx.moveTo(eyeX, eyeY - 5);
+        ctx.lineTo(eyeX + 8, eyeY + 6);
+        ctx.lineTo(eyeX + 16, eyeY - 5);
+        ctx.stroke();
+        ctx.fillStyle = `rgba(255, 160, 40, ${0.95 * so})`;
+        ctx.beginPath();
+        ctx.arc(eyeX + 8, eyeY + 1, 2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = `rgba(255, 160, 40, ${0.5 * so})`;
+        ctx.lineWidth = 0.6;
+        ctx.beginPath();
+        ctx.arc(eyeX + 8, eyeY + 1, 3.5, 0, Math.PI * 2);
+        ctx.stroke();
+
         // Title
         ctx.font = `bold 18px "SF Mono", monospace`;
         ctx.fillStyle = `rgba(255, 255, 255, ${0.95 * so})`;
-        ctx.fillText("DOCKETLENS", textX, ty);
+        ctx.fillText("VIGIL", textX + 22, ty);
         ty += 14;
         ctx.font = `11px "SF Mono", monospace`;
         ctx.fillStyle = `rgba(255, 255, 255, ${0.4 * so})`;
@@ -492,8 +514,13 @@ export default function DemoCanvas() {
       {showHint && (
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <div className="text-center">
+            <svg width="36" height="28" viewBox="0 0 18 14" style={{ margin: "0 auto 8px", display: "block" }}>
+              <path d="M1 1 L9 12 L17 1" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle cx="9" cy="7" r="2" fill="rgba(255,255,255,0.2)"/>
+              <circle cx="9" cy="7" r="3.5" fill="none" stroke="rgba(255,255,255,0.15)" strokeWidth="0.6"/>
+            </svg>
             <div className="text-white/20 font-mono text-sm tracking-widest uppercase mb-2">
-              DocketLens
+              Vigil
             </div>
             <div className="text-white/10 font-mono text-xs tracking-wider">
               Press space or click to begin

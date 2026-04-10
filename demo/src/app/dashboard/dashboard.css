@@ -1,16 +1,15 @@
-/* DocketLens Bloomberg Terminal — color palette + typography */
+/* Vigil Bloomberg Terminal — color palette + typography */
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Surfaces — pure-black Bloomberg terminal look (no navy tint) */
   --bg-base: #000000;
   --bg-panel: #050505;
   --bg-panel-alt: #0A0A0A;
-  --bg-panel-top: #101010;     /* top of panel gradient */
-  --bg-panel-bot: #020202;     /* bottom of panel gradient */
-  --bg-header-top: #221608;    /* warm dark brown header gradient top */
-  --bg-header-bot: #0E0905;    /* header gradient bottom */
+  --bg-panel-top: #101010;
+  --bg-panel-bot: #020202;
+  --bg-header-top: #221608;
+  --bg-header-bot: #0E0905;
   --bg-header: #1A0E03;
   --bg-hover: #1A1108;
   --bg-selected: #3D2A08;
@@ -18,19 +17,16 @@
   --bg-alert: #2A0808;
   --bg-row-stripe: rgba(255, 200, 100, 0.018);
 
-  /* Borders — almost invisible, separation comes from background contrast */
   --border-default: #181410;
   --border-strong: #2C2418;
   --border-header: #3A2408;
 
-  /* Text — Bloomberg amber hierarchy (brighter for readability) */
   --fg-primary: #FFA028;
   --fg-secondary: #FFB347;
   --fg-label: #E69500;
   --fg-muted: #B8860B;
   --fg-header: #FFFFFF;
 
-  /* Semantic */
   --data-positive: #00D26A;
   --data-negative: #FF3B3B;
   --data-neutral: #FFB800;
@@ -39,7 +35,6 @@
   --data-entity: #C792EA;
   --data-argument: #FFD580;
 
-  /* Series */
   --series-1: #FFA028;
   --series-2: #00B4D8;
   --series-3: #00D26A;
@@ -47,10 +42,8 @@
   --series-5: #C792EA;
   --series-6: #FFFFFF;
 
-  /* Fonts */
   --font-mono: 'IBM Plex Mono', 'Menlo', 'Courier New', monospace;
 
-  /* Sizes */
   --fs-micro: 9px;
   --fs-small: 10px;
   --fs-base: 11px;
@@ -64,7 +57,6 @@
   font-family: var(--font-mono);
   font-size: var(--fs-small);
   font-feature-settings: "tnum" 1, "zero" 1;
-  /* Subtle warm radial vignette so the screen has the Bloomberg CRT feel */
   background:
     radial-gradient(ellipse at center, #0a0806 0%, #050402 50%, #000000 100%);
   color: var(--fg-primary);
@@ -79,7 +71,6 @@
   cursor: default;
   position: relative;
 }
-/* Edge vignette — darker corners like a curved CRT */
 .dl-terminal::before {
   content: "";
   position: fixed;
@@ -93,7 +84,6 @@
   z-index: 9998;
   mix-blend-mode: multiply;
 }
-/* Faint scanline overlay — gives the terminal its phosphor texture */
 .dl-terminal::after {
   content: "";
   position: fixed;
@@ -131,7 +121,6 @@
   box-sizing: border-box;
 }
 
-/* === TICKER STRIP === */
 .dl-ticker {
   height: 18px;
   background: linear-gradient(180deg, #0a0603 0%, #000000 100%);
@@ -188,7 +177,6 @@
   100% { transform: translateX(-100%); }
 }
 
-/* === TOP BAR === */
 .dl-topbar {
   height: 24px;
   background: linear-gradient(180deg, #1a1108 0%, #0a0603 100%);
@@ -238,7 +226,6 @@
   text-align: right;
 }
 
-/* === COMMAND LINE === */
 .dl-cmd {
   height: 24px;
   background: var(--bg-command);
@@ -279,7 +266,6 @@
   letter-spacing: 0.04em;
 }
 
-/* === GRID === */
 .dl-grid {
   flex: 1;
   display: grid;
@@ -307,13 +293,10 @@
 .dl-ents { grid-column: 1; grid-row: 3; }
 .dl-args { grid-column: 2; grid-row: 3; }
 .dl-geo { grid-column: 3 / 5; grid-row: 3; }
-/* New row 4 — global + signal density */
 .dl-global { grid-column: 1 / 3; grid-row: 4; }
 .dl-heat { grid-column: 3 / 5; grid-row: 4; }
-/* Row 5 — heavy visualizations */
 .dl-sankey { grid-column: 1 / 3; grid-row: 5; }
 .dl-parcoords { grid-column: 3 / 5; grid-row: 5; }
-/* Row 6 — cluster briefing + chord */
 .dl-brief { grid-column: 1 / 4; grid-row: 6; }
 .dl-chord { grid-column: 4; grid-row: 6; }
 
@@ -326,7 +309,6 @@
   line-height: 1.25;
 }
 
-/* === PANEL === */
 .dl-panel {
   background:
     linear-gradient(180deg, var(--bg-panel-top) 0%, var(--bg-panel) 18%, var(--bg-panel-bot) 100%);
@@ -338,7 +320,19 @@
   flex-direction: column;
   overflow: hidden;
   min-height: 0;
+  animation: dl-panel-reveal 0.55s ease-out both;
 }
+@keyframes dl-panel-reveal {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.dl-doc, .dl-time, .dl-map, .dl-comm            { animation-delay: 0.15s; }
+.dl-clus, .dl-detail                             { animation-delay: 0.45s; }
+.dl-ents, .dl-args, .dl-geo                      { animation-delay: 0.75s; }
+.dl-global, .dl-heat                             { animation-delay: 1.05s; }
+.dl-sankey, .dl-parcoords                        { animation-delay: 1.35s; }
+.dl-brief, .dl-chord                             { animation-delay: 1.65s; }
+
 .dl-panel:focus-within,
 .dl-panel.active {
   border-color: var(--border-strong);
@@ -386,7 +380,6 @@
 .dl-panel-body.tight { padding: 4px 6px; }
 .dl-panel-body.flush { padding: 0; }
 
-/* === STATUS BAR === */
 .dl-statusbar {
   height: 20px;
   background: linear-gradient(180deg, #0a0603 0%, #1a1108 100%);
@@ -419,7 +412,6 @@
   display: inline-block;
 }
 
-/* === DOC PANEL === */
 .dl-doc-stat { margin-bottom: 6px; }
 .dl-doc-stat-label {
   color: var(--fg-muted);
@@ -442,7 +434,6 @@
 .dl-doc-stat-value.red { color: var(--data-negative); }
 .dl-doc-stat-value.green { color: var(--data-positive); }
 
-/* Number flash animation on value change */
 .dl-flash {
   animation: dl-flash 0.4s ease-out;
 }
@@ -451,7 +442,6 @@
   100% { background: transparent; box-shadow: none; }
 }
 
-/* === TABLES === */
 .dl-table {
   width: 100%;
   table-layout: auto;
@@ -490,11 +480,9 @@
   overflow: hidden;
   text-overflow: clip;
 }
-/* Subtle alternating row stripes — Bloomberg signature */
 .dl-table tbody tr:nth-child(even) td {
   background: var(--bg-row-stripe);
 }
-/* Sample cell — wraps and shows up to 2 lines */
 .dl-table td.dl-sample-cell {
   white-space: normal;
   color: var(--fg-secondary);
@@ -522,7 +510,6 @@
 .dl-class-uncert { color: var(--data-neutral); font-weight: 600; }
 .dl-class-organic { color: var(--data-positive); font-weight: 600; }
 
-/* === SCORE BAR === */
 .dl-score-bar {
   display: inline-flex;
   align-items: center;
@@ -539,7 +526,6 @@
   background: var(--fg-primary);
 }
 
-/* === SIGNAL CELLS (CLUS DETAIL) === */
 .dl-detail-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -582,13 +568,11 @@
 .dl-sig-value.warn { color: var(--data-neutral); }
 .dl-sig-value.good { color: var(--data-positive); }
 
-/* === SVG === */
 svg.dl-svg {
   display: block;
   shape-rendering: crispEdges;
 }
 
-/* === ARGS === */
 .dl-args-premise {
   display: flex;
   align-items: flex-start;
@@ -608,7 +592,6 @@ svg.dl-svg {
   flex: 1;
 }
 
-/* === ENTS === */
 .dl-ent-row {
   display: flex;
   justify-content: space-between;
@@ -625,7 +608,6 @@ svg.dl-svg {
   margin-left: 8px;
 }
 
-/* === COMM === */
 .dl-comm-row {
   display: flex;
   align-items: center;
@@ -654,13 +636,11 @@ svg.dl-svg {
   font-variant-numeric: tabular-nums;
 }
 
-/* === COMMAND BREADCRUMB === */
 .dl-breadcrumb {
   color: var(--data-link);
   font-size: var(--fs-micro);
 }
 
-/* selection state colors */
 .dl-link {
   color: var(--data-link);
   cursor: pointer;

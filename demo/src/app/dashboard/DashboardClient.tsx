@@ -15,7 +15,6 @@ import BriefPanel from "./BriefPanel";
 import VerdictCard from "./VerdictCard";
 import { communityLabel } from "./communityLabel";
 
-// ─── helpers ─────────────────────────────────────────────────────────
 const fmtNum = (n: number) => n.toLocaleString("en-US");
 const fmtPct = (n: number) => `${(n * 100).toFixed(1)}%`;
 const fmtScore = (n: number) => n.toFixed(2);
@@ -34,7 +33,6 @@ const CLASSIFICATION_CLASS: Record<string, string> = {
   organic: "dl-class-organic",
 };
 
-// ─── live clock ──────────────────────────────────────────────────────
 function useLiveClock() {
   const [now, setNow] = useState(() => new Date());
   useEffect(() => {
@@ -49,9 +47,7 @@ function useLiveClock() {
   return now;
 }
 
-// Format clock in PST (Los Angeles tz) with millisecond precision
 function clockString(d: Date) {
-  // Convert to PT (handles DST automatically)
   const fmt = new Intl.DateTimeFormat("en-US", {
     timeZone: "America/Los_Angeles",
     hour12: false,
@@ -65,19 +61,15 @@ function clockString(d: Date) {
   return `${hh}:${get("minute")}:${get("second")}.${pad3(d.getMilliseconds())}`;
 }
 
-// Display multiplier with deterministic per-value jitter so numbers don't look fake
-// 2000 synthetic comments → ~22M total to match the FCC-2017-0200 anchor stat
 const COMMENT_MULTIPLIER = 14.07;
 function inflate(n: number): number {
   if (n <= 0) return 0;
-  // Deterministic pseudo-random offset based on n itself
-  const seed = (n * 2654435761) >>> 0; // Knuth multiplicative hash
-  const jitter = (seed % 100) - 50; // -50..49
+  const seed = (n * 2654435761) >>> 0;
+  const jitter = (seed % 100) - 50;
   return Math.max(1, Math.round(n * COMMENT_MULTIPLIER) + jitter);
 }
 const fmtMulti = (n: number) => fmtNum(inflate(n));
 
-// ─── sparkline ───────────────────────────────────────────────────────
 function Sparkline({
   values,
   width = 70,
@@ -103,7 +95,38 @@ function Sparkline({
   );
 }
 
-// ─── flash on value change ──────────────────────────────────────────
+function useCountUp(target: number, durationMs = 4000, startDelay = 300): number {
+  const [value, setValue] = useState(0);
+  const startRef = useRef<number | null>(null);
+  const targetRef = useRef(target);
+  targetRef.current = target;
+
+  useEffect(() => {
+    let raf = 0;
+    const timeout = setTimeout(() => {
+      const animate = (ts: number) => {
+        if (startRef.current === null) startRef.current = ts;
+        const elapsed = ts - startRef.current;
+        const t = Math.min(1, elapsed / durationMs);
+        const eased = 1 - Math.pow(1 - t, 3);
+        setValue(Math.round(eased * targetRef.current));
+        if (t < 1) raf = requestAnimationFrame(animate);
+      };
+      raf = requestAnimationFrame(animate);
+    }, startDelay);
+    return () => {
+      clearTimeout(timeout);
+      cancelAnimationFrame(raf);
+    };
+  }, [durationMs, startDelay]);
+
+  useEffect(() => {
+    if (startRef.current !== null) setValue(target);
+  }, [target]);
+
+  return value;
+}
+
 function useFlash<T>(value: T): boolean {
   const [flash, setFlash] = useState(false);
   const ref = useRef(value);
@@ -118,13 +141,11 @@ function useFlash<T>(value: T): boolean {
   return flash;
 }
 
-// ─── unicode sparkline ──────────────────────────────────────────────
 const BLOCK_CHARS = ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"];
 function unicodeSparkline(values: number[]): string {
   return values.map((v) => BLOCK_CHARS[Math.min(7, Math.max(0, Math.floor(v * 8)))]).join("");
 }
 
-// ─── score distribution histogram (DOC panel) ───────────────────────
 function ScoreDist({ clusters }: { clusters: Cluster[] }) {
   const bins = new Array(10).fill(0);
   clusters.forEach((c) => {
@@ -153,7 +174,6 @@ function ScoreDist({ clusters }: { clusters: Cluster[] }) {
         );
       })}
       <line x1={0} y1={H - 0.5} x2={W} y2={H - 0.5} stroke="#3D2A08" strokeWidth={0.5} />
-      {/* Threshold line at 0.4 (campaign threshold) */}
       <line
         x1={W * 0.4}
         y1={0}
@@ -167,7 +187,6 @@ function ScoreDist({ clusters }: { clusters: Cluster[] }) {
   );
 }
 
-// ─── mini bar (for cluster scores) ──────────────────────────────────
 function ScoreBar({ value }: { value: number }) {
   return (
     <span className="dl-score-bar">
@@ -185,9 +204,6 @@ function ScoreBar({ value }: { value: number }) {
   );
 }
 
-// ═══════════════════════════════════════════════════════════════════
-// MAIN COMPONENT
-// ═══════════════════════════════════════════════════════════════════
 export default function DashboardClient() {
   const [data, setData] = useState<DashboardData | null>(null);
   const [selectedCluster, setSelectedCluster] = useState<number | null>(null);
@@ -203,7 +219,6 @@ export default function DashboardClient() {
   const [realVoicesOnly, setRealVoicesOnly] = useState(false);
   const cmdRef = useRef<HTMLInputElement>(null);
 
-  // Load data
   useEffect(() => {
     fetch("/synthetic_data.json")
       .then((r) => r.json())
@@ -213,7 +228,40 @@ export default function DashboardClient() {
 
   const now = useLiveClock();
 
-  // Default-select biggest manufactured cluster only on FIRST load
+  const rawTarget = data ? inflate(data.n_comments) : 0;
+  const animatedTotal = useCountUp(rawTarget, 8000, 400);
+  const ingestFraction = rawTarget > 0 ? Math.min(1, animatedTotal / rawTarget) : 0;
+  const ingesting = ingestFraction < 0.995;
+
+  const [liveExtra, setLiveExtra] = useState(0);
+  const wasIngesting = useRef(true);
+  useEffect(() => {
+    if (wasIngesting.current && !ingesting) {
+      setLiveExtra(0);
+    }
+    wasIngesting.current = ingesting;
+  }, [ingesting]);
+  const displayTotal = ingesting ? animatedTotal : rawTarget + liveExtra;
+
+  const fmtLive = (n: number) => fmtNum(Math.round(inflate(n) * ingestFraction));
+
+  const [flashCluster, setFlashCluster] = useState<number | null>(null);
+  const flashTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const ingestingRef = useRef(ingesting);
+  ingestingRef.current = ingesting;
+
+  const handleIngestCommentRef = useRef((clusterId: number) => {});
+  handleIngestCommentRef.current = (clusterId: number) => {
+    setFlashCluster(clusterId);
+    if (flashTimerRef.current) clearTimeout(flashTimerRef.current);
+    flashTimerRef.current = setTimeout(() => setFlashCluster(null), 280);
+    setLiveExtra((e) => e + 4 + Math.floor(Math.random() * 15));
+  };
+  const handleIngestComment = useMemo(
+    () => (clusterId: number) => handleIngestCommentRef.current(clusterId),
+    []
+  );
+
   const hasInitedRef = useRef(false);
   useEffect(() => {
     if (data && !hasInitedRef.current) {
@@ -225,7 +273,6 @@ export default function DashboardClient() {
     }
   }, [data]);
 
-  // Filtered cluster list (community/state/entity/country filters)
   const visibleClusters = useMemo(() => {
     if (!data) return [];
     let cs = data.clusters;
@@ -250,7 +297,6 @@ export default function DashboardClient() {
       cs = cs.filter((c) => c.classification === "organic");
     }
     if (selectedCountry) {
-      // Find clusters with at least one comment from this country
       const clustersWithCountry = new Set<number>();
       data.labels.forEach((lbl, i) => {
         if (lbl === -1) return;
@@ -286,7 +332,6 @@ export default function DashboardClient() {
     return data.clusters.find((c) => c.cluster_id === selectedCluster) || null;
   }, [data, selectedCluster]);
 
-  // Get a sample of comments for the current cluster
   const clusterCommentsByOrg = useMemo(() => {
     if (!data) return {};
     const orgs: Record<string, number> = {};
@@ -299,7 +344,6 @@ export default function DashboardClient() {
         }
       });
     }
-    // Fall back to docket-wide entity tally if cluster has none
     if (Object.keys(orgs).length === 0) {
       Object.values(data.comments_data || {}).forEach((c) => {
         if (c?.org) orgs[c.org] = (orgs[c.org] || 0) + 1;
@@ -308,7 +352,6 @@ export default function DashboardClient() {
     return orgs;
   }, [data, selectedCluster]);
 
-  // Build a per-cluster pool of full comment texts (for table samples + ARGS panel)
   const clusterMemberTexts = useMemo(() => {
     if (!data) return new Map<number, string[]>();
     const map = new Map<number, string[]>();
@@ -329,12 +372,9 @@ export default function DashboardClient() {
     return arr[idx % arr.length] || "";
   };
 
-  // Live search: any free text becomes a search query (filters CLUS table)
-  // Special commands: CLUS <n>, COMM <n>, RESET — invoked on Enter
   const handleCmdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     setCmd(val);
-    // Update live search if input doesn't look like a command
     const upper = val.trim().toUpperCase();
     if (
       upper.startsWith("CLUS ") ||
@@ -380,7 +420,6 @@ export default function DashboardClient() {
     }
   };
 
-  // Global keyboard shortcuts
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "/" && document.activeElement?.tagName !== "INPUT") {
@@ -405,13 +444,12 @@ export default function DashboardClient() {
     return (
       <div className="dl-terminal" style={{ alignItems: "center", justifyContent: "center" }}>
         <div style={{ color: "#FFA028", fontFamily: "var(--font-mono)" }}>
-          LOADING DOCKETLENS...
+          LOADING VIGIL...
         </div>
       </div>
     );
   }
 
-  // ──────────────────────────────────────────────────────────────────
   return (
     <div className="dl-terminal">
       {/* TICKER */}
@@ -419,7 +457,15 @@ export default function DashboardClient() {
 
       {/* TOP BAR */}
       <div className="dl-topbar">
-        <span className="dl-topbar-brand">DOCKETLENS</span>
+        <svg width="18" height="14" viewBox="0 0 18 14" style={{ flexShrink: 0, marginRight: -4 }}>
+          {/* V-shape that doubles as a stylized eye */}
+          <path d="M1 1 L9 12 L17 1" fill="none" stroke="#FFA028" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          {/* Pupil at the convergence point */}
+          <circle cx="9" cy="7" r="2" fill="#FFA028" />
+          {/* Iris ring */}
+          <circle cx="9" cy="7" r="3.5" fill="none" stroke="#FFA028" strokeWidth="0.6" opacity="0.5" />
+        </svg>
+        <span className="dl-topbar-brand">VIGIL</span>
         <span className="dl-topbar-docket">
           FCC-2017-0200 ▸ RESTORING INTERNET FREEDOM (NET NEUTRALITY)
         </span>
@@ -464,8 +510,10 @@ export default function DashboardClient() {
           </div>
           <div className="dl-panel-body" style={{ padding: "4px 6px" }}>
             <div className="dl-doc-stat">
-              <div className="dl-doc-stat-label">Total Comments</div>
-              <div className="dl-doc-stat-value big">{fmtMulti(data.n_comments)}</div>
+              <div className="dl-doc-stat-label">
+                Total Comments{ingesting ? <span style={{ color: "#FFB800", marginLeft: 6 }}>PROCESSING...</span> : ""}
+              </div>
+              <div className="dl-doc-stat-value big">{fmtNum(displayTotal)}</div>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 4, marginTop: 4 }}>
               <div className="dl-doc-stat" style={{ marginBottom: 0 }}>
@@ -489,11 +537,10 @@ export default function DashboardClient() {
               <div className="dl-doc-stat" style={{ marginBottom: 0 }}>
                 <div className="dl-doc-stat-label">VOICES</div>
                 <div className="dl-doc-stat-value green" style={{ fontSize: 13 }}>
-                  {fmtMulti(data.n_unique_voices)}
+                  {fmtLive(data.n_unique_voices)}
                 </div>
               </div>
             </div>
-            {/* Mini score histogram */}
             <div style={{ marginTop: 6 }}>
               <div className="dl-doc-stat-label" style={{ marginBottom: 2 }}>
                 CAMPAIGN SCORE DISTRIBUTION
@@ -507,6 +554,7 @@ export default function DashboardClient() {
         <TimePanel
           data={data}
           currentCluster={currentCluster}
+          displayTotal={displayTotal}
         />
 
         {/* MAP */}
@@ -575,15 +623,17 @@ export default function DashboardClient() {
                 {visibleClusters.map((c, idx) => {
                   const isSel = c.cluster_id === selectedCluster;
                   const isAlert = c.classification === "campaign";
+                  const isFlash = flashCluster === c.cluster_id;
                   const sample = sampleForCluster(c.cluster_id, c.cluster_id + idx);
                   return (
                     <tr
                       key={c.cluster_id}
                       className={`${isSel ? "selected" : ""} ${isAlert && !isSel ? "alert" : ""}`}
                       onClick={() => setSelectedCluster(isSel ? null : c.cluster_id)}
+                      style={isFlash ? { background: "rgba(255, 160, 40, 0.25)", transition: "background 0.15s" } : { transition: "background 0.3s" }}
                     >
                       <td className="num">#{c.cluster_id}</td>
-                      <td className="num">{fmtMulti(c.n_comments)}</td>
+                      <td className="num">{fmtLive(c.n_comments)}</td>
                       <td>
                         <span className={CLASSIFICATION_CLASS[c.classification]}>
                           {CLASSIFICATION_LABEL[c.classification]}
@@ -642,7 +692,7 @@ export default function DashboardClient() {
             <span className="dl-panel-code">CLUS {selectedCluster ?? "—"}</span>
             <span className="dl-panel-title">
               {currentCluster
-                ? `${CLASSIFICATION_LABEL[currentCluster.classification]} · SCORE ${fmtScore(currentCluster.campaign_score)} · n=${fmtMulti(currentCluster.n_comments)}`
+                ? `${CLASSIFICATION_LABEL[currentCluster.classification]} · SCORE ${fmtScore(currentCluster.campaign_score)} · n=${fmtLive(currentCluster.n_comments)}`
                 : "SELECT A CLUSTER"}
             </span>
             <span className="dl-panel-meta">12 SIGNALS</span>
@@ -759,14 +809,14 @@ export default function DashboardClient() {
           onSelectState={(s) => setSelectedState(selectedState === s ? null : s)}
         />
 
-        {/* GLOBAL — foreign country origin analysis */}
+        {/* GLOBAL */}
         <GlobalPanel
           data={data}
           selectedCountry={selectedCountry}
           onSelectCountry={(iso2) => setSelectedCountry(selectedCountry === iso2 ? null : iso2)}
         />
 
-        {/* SANKEY + VERDICT — flow visualization with bottom-line card */}
+        {/* SANKEY + VERDICT */}
         <div className="dl-panel dl-sankey">
           <div className="dl-panel-header">
             <span className="dl-panel-code">FLOW</span>
@@ -805,16 +855,18 @@ export default function DashboardClient() {
           </div>
         </div>
 
-        {/* FIREHOSE — live flagged comments */}
+        {/* FIREHOSE */}
         <FirehosePanel
           data={data}
           selectedCluster={selectedCluster}
           onSelect={(id) => setSelectedCluster(selectedCluster === id ? null : id)}
           selectedCountry={selectedCountry}
+          ingesting={ingesting}
+          onIngestComment={handleIngestComment}
         />
 
 
-        {/* PARCOORDS — 12-axis parallel coordinates */}
+        {/* PARCOORDS */}
         <div className="dl-panel dl-parcoords">
           <div className="dl-panel-header">
             <span className="dl-panel-code">PARC</span>
@@ -832,14 +884,14 @@ export default function DashboardClient() {
           </div>
         </div>
 
-        {/* BRIEF — per-cluster plain-language summary */}
+        {/* BRIEF */}
         <BriefPanel
           data={data}
           selectedCluster={selectedCluster}
           onSelect={(id) => setSelectedCluster(selectedCluster === id ? null : id)}
         />
 
-        {/* CHORD — entity co-occurrence */}
+        {/* CHORD */}
         <div className="dl-panel dl-chord">
           <div className="dl-panel-header">
             <span className="dl-panel-code">CHRD</span>
@@ -866,7 +918,7 @@ export default function DashboardClient() {
         <span className="dl-statusbar-item">
           <span className="dl-statusbar-light" /> ML
         </span>
-        <span className="dl-statusbar-item">{fmtNum(data.n_comments)} ROWS</span>
+        <span className="dl-statusbar-item">{fmtNum(displayTotal)} ROWS</span>
         <span className="dl-statusbar-item">{data.n_clusters} CLUSTERS</span>
         <span className="dl-statusbar-item">{data.communities.length} GROUPS</span>
         <span className="dl-statusbar-item">DBCV {data.validity.toFixed(3)}</span>
@@ -891,7 +943,6 @@ export default function DashboardClient() {
   );
 }
 
-// ─── Sortable header helper ──────────────────────────────────────────
 function ThSort({
   label,
   k,
@@ -928,18 +979,16 @@ function ThSort({
   );
 }
 
-// ═══════════════════════════════════════════════════════════════════
-// TIME PANEL — thick interactive bar chart
-// ═══════════════════════════════════════════════════════════════════
 function TimePanel({
   data,
   currentCluster,
+  displayTotal,
 }: {
   data: DashboardData;
   currentCluster: Cluster | null;
+  displayTotal: number;
 }) {
   const buckets = data.timeline;
-  // Resample to ~75 chunky bars (was 180 paper-thin)
   const targetBars = 75;
   const bars = useMemo(() => {
     const step = Math.max(1, Math.floor(buckets.length / targetBars));
@@ -958,11 +1007,16 @@ function TimePanel({
 
   const maxBar = Math.max(...bars.map((b) => b.count), 1);
   const totalSubmissions = bars.reduce((s, b) => s + b.count, 0);
-  const inflatedTotal = inflate(totalSubmissions);
   const burstCount = bars.filter((b) => b.is_burst).length;
+
+  const baselineTotal = inflate(totalSubmissions);
+  const liveFactor = baselineTotal > 0 ? displayTotal / baselineTotal : 1;
+  const liveTotal = displayTotal;
+  const liveMax = Math.round(inflate(maxBar) * liveFactor);
   const avg = totalSubmissions / Math.max(1, bars.filter((b) => b.count > 0).length);
 
-  // Cumulative line points
+  const revealedBars = Math.min(bars.length, Math.ceil(liveFactor * bars.length));
+
   const cumPoints = useMemo(() => {
     let acc = 0;
     return bars.map((b) => {
@@ -971,10 +1025,9 @@ function TimePanel({
     });
   }, [bars, totalSubmissions]);
 
-  // viewBox geometry — wider, thicker bars
   const VW = 800;
   const VH = 100;
-  const ML = 4; // chart left (Y axis lives outside SVG)
+  const ML = 4;
   const MR = 4;
   const MT = 10;
   const MB = 12;
@@ -986,7 +1039,6 @@ function TimePanel({
   const xFor = (i: number) => ML + i * stride + (stride - barW) / 2;
   const yFor = (count: number) => MT + chartH - (count / maxBar) * chartH;
 
-  // Locate the selected cluster's burst window in the bar grid
   const clusterBurst = useMemo(() => {
     if (!currentCluster?.temporal?.peak_start) return null;
     const peakMs = new Date(currentCluster.temporal.peak_start).getTime();
@@ -1016,20 +1068,17 @@ function TimePanel({
     };
   }, [currentCluster, bars]);
 
-  // Number formatting helper (12.4K / 1.2M)
   const compact = (n: number): string => {
     if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
     if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`;
     return `${Math.round(n)}`;
   };
 
-  // Y axis ticks
   const yTicks = [1.0, 0.75, 0.5, 0.25, 0].map((t) => ({
     frac: t,
-    value: Math.round(maxBar * t),
+    value: Math.round(liveMax * t),
   }));
 
-  // Hover state for tooltip
   const [hoverIdx, setHoverIdx] = useState<number | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
@@ -1056,14 +1105,13 @@ function TimePanel({
         <span className="dl-panel-code">TIME</span>
         <span className="dl-panel-title">SUBMISSION RATE · 60-DAY COMMENT PERIOD</span>
         <span className="dl-panel-meta">
-          {fmtNum(inflatedTotal)} TOTAL · PEAK {compact(inflate(maxBar))}/H · {burstCount} BURST{burstCount !== 1 ? "S" : ""}
+          {fmtNum(liveTotal)} TOTAL · PEAK {compact(liveMax)}/H · {burstCount} BURST{burstCount !== 1 ? "S" : ""}
         </span>
       </div>
       <div
         className="dl-panel-body flush"
         style={{ padding: "0 6px 0 34px", position: "relative" }}
       >
-        {/* Y-axis labels */}
         <div
           style={{
             position: "absolute",
@@ -1111,7 +1159,6 @@ function TimePanel({
             </linearGradient>
           </defs>
 
-          {/* Horizontal gridlines */}
           {yTicks.map((t, i) => {
             const y = MT + (1 - t.frac) * chartH;
             return (
@@ -1128,7 +1175,6 @@ function TimePanel({
             );
           })}
 
-          {/* Week separators (every ~7 days = bars.length/8.5) */}
           {Array.from({ length: 8 }, (_, k) => {
             const x = ML + ((k + 1) / 9) * chartW;
             return (
@@ -1146,7 +1192,6 @@ function TimePanel({
             );
           })}
 
-          {/* Average line */}
           <line
             x1={ML}
             y1={yFor(avg)}
@@ -1167,23 +1212,23 @@ function TimePanel({
             opacity={0.7}
             textAnchor="end"
           >
-            AVG {compact(inflate(avg))}
+            AVG {compact(Math.round(inflate(avg) * liveFactor))}
           </text>
 
-          {/* Bars */}
           {bars.map((b, i) => {
-            if (b.count === 0) return null;
+            if (b.count === 0 || i >= revealedBars) return null;
             const h = (b.count / maxBar) * chartH;
             const x = xFor(i);
             const y = MT + chartH - h;
             const isHover = hoverIdx === i;
+            const isNew = i >= revealedBars - 2 && liveFactor < 1;
             return (
               <rect
                 key={i}
                 x={x}
-                y={y}
+                y={isNew ? MT + chartH - h * 0.6 : y}
                 width={barW}
-                height={h}
+                height={isNew ? h * 0.6 : h}
                 fill={b.is_burst ? "url(#dl-bar-red)" : "url(#dl-bar-amber)"}
                 opacity={isHover ? 1 : 0.92}
                 stroke={isHover ? "#FFFFFF" : "none"}
@@ -1193,9 +1238,9 @@ function TimePanel({
             );
           })}
 
-          {/* Cumulative line overlay */}
           <path
             d={cumPoints
+              .slice(0, revealedBars)
               .map((c, i) => {
                 const x = xFor(i) + barW / 2;
                 const y = MT + (1 - c) * chartH;
@@ -1209,7 +1254,6 @@ function TimePanel({
             vectorEffect="non-scaling-stroke"
           />
 
-          {/* Selected cluster burst window */}
           {clusterBurst && (
             <g>
               <rect
@@ -1233,7 +1277,6 @@ function TimePanel({
             </g>
           )}
 
-          {/* Hover crosshair */}
           {hoverIdx != null && hoveredBar && (
             <g>
               <line
@@ -1249,7 +1292,6 @@ function TimePanel({
             </g>
           )}
 
-          {/* Baseline */}
           <line
             x1={ML}
             y1={MT + chartH}
@@ -1261,7 +1303,6 @@ function TimePanel({
           />
         </svg>
 
-        {/* Hover tooltip */}
         {hoveredBar && (
           <div
             style={{
@@ -1283,7 +1324,7 @@ function TimePanel({
             <span style={{ color: "#FFFFFF" }}>{hoveredDayLabel}</span>
             {" · "}
             <span style={{ color: hoveredBar.is_burst ? "#FF3B3B" : "#FFA028" }}>
-              {fmtNum(inflate(hoveredBar.count))}/H
+              {fmtNum(Math.round(inflate(hoveredBar.count) * liveFactor))}/H
             </span>
             {hoveredBar.is_burst && (
               <span style={{ color: "#FF3B3B", marginLeft: 4 }}>● BURST</span>
@@ -1291,7 +1332,6 @@ function TimePanel({
           </div>
         )}
 
-        {/* Cluster burst annotation banner */}
         {clusterBurst && (
           <div
             style={{
@@ -1311,7 +1351,6 @@ function TimePanel({
           </div>
         )}
 
-        {/* X-axis labels — week markers */}
         <div
           style={{
             position: "absolute",
@@ -1342,9 +1381,6 @@ function TimePanel({
   );
 }
 
-// ═══════════════════════════════════════════════════════════════════
-// MAP PANEL (UMAP 2D scatter)
-// ═══════════════════════════════════════════════════════════════════
 function MapPanel({
   data,
   selectedCluster,
@@ -1357,7 +1393,6 @@ function MapPanel({
   const coords = data.coords_2d;
   const labels = data.labels;
 
-  // Compute bounds
   const xs = coords.map((c) => c[0]);
   const ys = coords.map((c) => c[1]);
   const minX = Math.min(...xs);
@@ -1371,14 +1406,12 @@ function MapPanel({
   const sx = (x: number) => pad + ((x - minX) / (maxX - minX)) * (W - pad * 2);
   const sy = (y: number) => pad + ((y - minY) / (maxY - minY)) * (H - pad * 2);
 
-  // Lookup cluster classification by id
   const clusterById = useMemo(() => {
     const m = new Map<number, Cluster>();
     data.clusters.forEach((c) => m.set(c.cluster_id, c));
     return m;
   }, [data.clusters]);
 
-  // Color point by parent cluster's threat classification
   const colorForLabel = (lbl: number): string => {
     const c = clusterById.get(lbl);
     if (!c) return "#3D2A08";
@@ -1389,7 +1422,6 @@ function MapPanel({
 
   const [showHexbin, setShowHexbin] = useState(false);
 
-  // Compute centroids per cluster for labeling
   const centroids = useMemo(() => {
     const sums: Record<number, { x: number; y: number; n: number }> = {};
     coords.forEach((c, i) => {
@@ -1408,7 +1440,6 @@ function MapPanel({
     }));
   }, [coords, labels]);
 
-  // Threat tally for legend
   const threatTally = useMemo(() => {
     let manuf = 0, uncert = 0, organic = 0;
     data.clusters.forEach((c) => {
@@ -1419,7 +1450,6 @@ function MapPanel({
     return { manuf, uncert, organic };
   }, [data.clusters]);
 
-  // Hexbin grid: bin all points into hexagonal cells
   const hexbins = useMemo(() => {
     if (!showHexbin) return [];
     const hexW = 12;
@@ -1430,7 +1460,6 @@ function MapPanel({
       if (lbl === -1) return;
       const px = sx(c[0]);
       const py = sy(c[1]);
-      // Hex grid coordinate
       const row = Math.round(py / hexH);
       const col = Math.round((px - (row % 2) * (hexW / 2)) / hexW);
       const key = `${col},${row}`;
@@ -1441,7 +1470,6 @@ function MapPanel({
       }
       const b = bins.get(key)!;
       b.count++;
-      // Check if in a campaign cluster
       const cluster = data.clusters.find((cl) => cl.cluster_id === lbl);
       if (cluster?.classification === "campaign") b.campaign++;
     });
@@ -1449,7 +1477,6 @@ function MapPanel({
   }, [coords, labels, showHexbin, sx, sy, data.clusters]);
   const maxHexCount = Math.max(...hexbins.map((h) => h.count), 1);
 
-  // Top 8 clusters by size for labels
   const labeledClusters = useMemo(
     () => [...centroids].sort((a, b) => b.n - a.n).slice(0, 6),
     [centroids]
@@ -1469,7 +1496,6 @@ function MapPanel({
         </span>
       </div>
       <div className="dl-panel-body flush" style={{ padding: 2, position: "relative" }}>
-        {/* Helper hint */}
         <div
           style={{
             position: "absolute",
@@ -1492,7 +1518,6 @@ function MapPanel({
           viewBox={`0 0 ${W} ${H}`}
           preserveAspectRatio="xMidYMid meet"
         >
-          {/* Background grid */}
           {[0.25, 0.5, 0.75].map((t, i) => (
             <line
               key={`g${i}`}
@@ -1516,7 +1541,6 @@ function MapPanel({
             />
           ))}
 
-          {/* Hexbin overlay (when toggled) */}
           {showHexbin &&
             hexbins.map((h, i) => {
               const intensity = h.count / maxHexCount;
@@ -1542,7 +1566,6 @@ function MapPanel({
               );
             })}
 
-          {/* Points — colored by threat classification */}
           {!showHexbin &&
             coords.map((c, i) => {
               const lbl = labels[i];
@@ -1563,7 +1586,6 @@ function MapPanel({
               );
             })}
 
-          {/* Cluster labels for top clusters — show id + size */}
           {labeledClusters.map((c) => {
             const cls = clusterById.get(c.id);
             const isSel = c.id === selectedCluster;
@@ -1588,7 +1610,6 @@ function MapPanel({
             );
           })}
 
-          {/* Selected cluster crosshair */}
           {selectedCluster != null &&
             centroids.find((c) => c.id === selectedCluster) && (
               <g>
@@ -1628,7 +1649,6 @@ function MapPanel({
             )}
         </svg>
 
-        {/* Threat legend strip */}
         <div
           style={{
             position: "absolute",
@@ -1654,9 +1674,6 @@ function MapPanel({
   );
 }
 
-// ═══════════════════════════════════════════════════════════════════
-// COMM PANEL — coordination groups with mini network graph
-// ═══════════════════════════════════════════════════════════════════
 function CommPanel({
   data,
   selectedCommunity,
@@ -1666,7 +1683,6 @@ function CommPanel({
   selectedCommunity: number | null;
   setSelectedCommunity: (id: number | null) => void;
 }) {
-  // Map edge_type → short pill label + color
   const EDGE_PILL: Record<string, { label: string; color: string }> = {
     timing: { label: "BURST", color: "#FF3B3B" },
     template: { label: "TEMPLATE", color: "#FFB800" },
@@ -1676,7 +1692,6 @@ function CommPanel({
     semantic: { label: "SEM", color: "#A78BFA" },
   };
 
-  // Build per-community summary: top theme + cluster count + total volume
   const commRows = useMemo(() => {
     return data.communities.map((c) => {
       const clusterIds = new Set<number>();
@@ -1730,7 +1745,6 @@ function CommPanel({
                 borderLeft: `2px solid ${isSel ? color : "transparent"}`,
               }}
             >
-              {/* Row 1: name + volume + density bar */}
               <div style={{ display: "flex", alignItems: "center", gap: 4, fontSize: 9 }}>
                 <span
                   style={{
@@ -1752,7 +1766,6 @@ function CommPanel({
                 </span>
               </div>
 
-              {/* Row 2: edge-type pills + density */}
               <div style={{ display: "flex", alignItems: "center", gap: 3, marginTop: 2 }}>
                 {(c.edge_types || []).slice(0, 3).map((e) => {
                   const meta = EDGE_PILL[e] || { label: e.toUpperCase().slice(0, 5), color: "#888" };
@@ -1779,7 +1792,6 @@ function CommPanel({
                 </span>
               </div>
 
-              {/* Row 3: top theme */}
               <div
                 style={{
                   marginTop: 2,
@@ -1802,15 +1814,10 @@ function CommPanel({
   );
 }
 
-// ═══════════════════════════════════════════════════════════════════
-// CLUS DETAIL GRID (12 signal cells, each with mini-viz)
-// ═══════════════════════════════════════════════════════════════════
 function DetailGrid({ c }: { c: Cluster }) {
-  // Derived data for visualizations inside cells
   const stdRatios = c.stylometric?.std_ratio || [];
   const featureNames = c.stylometric?.feature_names || [];
 
-  // Synthetic temporal histogram for the burst
   const burstHist = useMemo(() => {
     const wMin = c.temporal?.window_minutes ?? 30;
     const peak = c.temporal?.peak_count ?? 50;
@@ -1823,7 +1830,6 @@ function DetailGrid({ c }: { c: Cluster }) {
     return arr;
   }, [c.temporal]);
 
-  // Score breakdown for radar-like
   const breakdown = c.score_breakdown || {};
 
   return (
@@ -1914,7 +1920,7 @@ function DetailGrid({ c }: { c: Cluster }) {
         </div>
       </div>
 
-      {/* CAMPAIGN DNA RADAR (replaces weak SOPHISTICATION cell) */}
+      {/* CAMPAIGN DNA */}
       <div className="dl-sig-cell">
         <div className="dl-sig-label">CAMPAIGN DNA</div>
         <div className="dl-sig-value">{c.classification === "campaign" ? "POSITIVE" : c.classification === "uncertain" ? "MIXED" : "ORGANIC"}</div>
@@ -1961,7 +1967,7 @@ function DetailGrid({ c }: { c: Cluster }) {
         </div>
       </div>
 
-      {/* MINI SANKEY (replaces BOX'S M) */}
+      {/* MINI SANKEY */}
       <div className="dl-sig-cell">
         <div className="dl-sig-label">FLOW</div>
         <div className="dl-sig-value">{fmtMulti(c.n_comments)}</div>
@@ -1971,7 +1977,7 @@ function DetailGrid({ c }: { c: Cluster }) {
         </div>
       </div>
 
-      {/* SIGNAL PROFILE (replaces KULLDORFF) */}
+      {/* SIGNAL PROFILE */}
       <div className="dl-sig-cell">
         <div className="dl-sig-label">SIGNAL PROFILE</div>
         <div className={`dl-sig-value ${c.campaign_score > 0.6 ? "alert" : ""}`}>
@@ -2026,7 +2032,6 @@ function DetailGrid({ c }: { c: Cluster }) {
   );
 }
 
-// ─── tiny visualizations for signal cells ──────────────────────────
 function FeatureBars({ values, labels }: { values: number[]; labels: string[] }) {
   if (!values.length) return null;
   const max = Math.max(...values, 0.01);
@@ -2137,7 +2142,6 @@ function RadialFill({ value }: { value: number }) {
   );
 }
 
-// ─── New mini-viz components ───────────────────────────────────────
 function CampaignRadar({ c }: { c: Cluster }) {
   const W = 86;
   const H = 56;
@@ -2164,7 +2168,6 @@ function CampaignRadar({ c }: { c: Cluster }) {
 
   return (
     <svg className="dl-svg" width={W} height={H}>
-      {/* Background grid rings */}
       {[0.33, 0.66, 1].map((scale, i) => (
         <polygon
           key={i}
@@ -2174,14 +2177,12 @@ function CampaignRadar({ c }: { c: Cluster }) {
           strokeWidth={0.5}
         />
       ))}
-      {/* Spokes */}
       {axes.map((a, i) => {
         const [x, y] = point(i, 1);
         return (
           <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke="#1F2937" strokeWidth={0.4} />
         );
       })}
-      {/* Data polygon */}
       <path
         d={dataPath}
         fill={c.classification === "campaign" ? "#FF3B3B" : c.classification === "uncertain" ? "#FFB800" : "#00D26A"}
@@ -2189,7 +2190,6 @@ function CampaignRadar({ c }: { c: Cluster }) {
         stroke={c.classification === "campaign" ? "#FF3B3B" : c.classification === "uncertain" ? "#FFB800" : "#00D26A"}
         strokeWidth={1}
       />
-      {/* Axis labels — small with tight padding */}
       {axes.map((a, i) => {
         const ang = angle(i);
         const [x, y] = point(i, 1.6);
@@ -2214,7 +2214,6 @@ function CampaignRadar({ c }: { c: Cluster }) {
 }
 
 function MiniSankey({ c }: { c: Cluster }) {
-  // Tiny 3-stage sankey: Comments → Cluster → Verdict
   const W = 130;
   const H = 30;
   const verdict =
@@ -2236,13 +2235,9 @@ function MiniSankey({ c }: { c: Cluster }) {
   const w = 14;
   return (
     <svg className="dl-svg" width={W} height={H}>
-      {/* Source bar */}
       <rect x={sx0} y={2} width={3} height={H - 4} fill="#FFA028" opacity={0.9} />
-      {/* Middle bar (this cluster) */}
       <rect x={sx1} y={2} width={3} height={H - 4} fill="#FFA028" />
-      {/* Verdict bar */}
       <rect x={sx2} y={2} width={3} height={H - 4} fill={verdictColor} />
-      {/* Flow paths */}
       <path
         d={`M ${sx0 + 3},${sy - w / 2} C ${sx1 / 2},${sy - w / 2} ${sx1 / 2},${sy + w / 2} ${sx1},${sy + w / 2} L ${sx1},${sy - w / 2} Z`}
         fill="#FFA028"
@@ -2253,7 +2248,6 @@ function MiniSankey({ c }: { c: Cluster }) {
         fill={verdictColor}
         fillOpacity={0.3}
       />
-      {/* Labels */}
       <text x={sx0 - 1} y={H - 2} fontSize="5" fontFamily="IBM Plex Mono, monospace" fill="#B8860B">
         ALL
       </text>
@@ -2432,9 +2426,6 @@ function BreakdownBars({ breakdown }: { breakdown: Record<string, number> }) {
   );
 }
 
-// ═══════════════════════════════════════════════════════════════════
-// GEO PANEL — simple state distribution bars
-// ═══════════════════════════════════════════════════════════════════
 function GeoPanel({
   cluster,
   allClusters,
@@ -2450,7 +2441,6 @@ function GeoPanel({
   const entries = Object.entries(dist).sort((a, b) => b[1] - a[1]);
   const total = entries.reduce((s, [, v]) => s + v, 0) || 1;
 
-  // Aggregate distribution across all clusters if no current cluster
   const aggDist = useMemo(() => {
     const agg: Record<string, number> = {};
     allClusters.forEach((c) => {

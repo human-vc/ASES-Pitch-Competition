@@ -1,4 +1,4 @@
-// Data types for the DocketLens dashboard
+// Data types for the Vigil dashboard
 
 export interface Cluster {
   cluster_id: number;

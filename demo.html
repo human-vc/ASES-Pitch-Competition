@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DocketLens</title>
+<title>Vigil</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #000; overflow: hidden; font-family: "SF Mono", "Fira Code", "Courier New", monospace; cursor: none; }
+  body { background: #000; overflow: hidden; font-family: "SF Mono", "Fira Code", "Courier New", monospace; cursor: default; }
   canvas { display: block; position: fixed; top: 0; left: 0; }
 
   #hint {
@@ -37,23 +37,28 @@
     padding: 40px 28px; overflow-y: auto; pointer-events: none;
   }
   #sidebar.show { transform: translateX(0); }
-  .sb-title { font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.9); letter-spacing: 3px; margin-bottom: 4px; }
-  .sb-docket { font-size: 10px; color: rgba(255,255,255,0.25); letter-spacing: 1px; margin-bottom: 32px; }
-  .sb-div { height: 1px; background: rgba(255,255,255,0.06); margin: 20px 0; }
-  .sb-label { font-size: 10px; color: rgba(255,255,255,0.35); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
-  .sb-val { font-size: 32px; font-weight: 800; margin-bottom: 4px; letter-spacing: -1px; }
-  .sb-sub { font-size: 11px; margin-bottom: 24px; }
-  .sb-alert { font-size: 12px; font-weight: 700; letter-spacing: 2px; margin-bottom: 16px; }
-  .ci { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 18px; }
-  .ci-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 3px; flex-shrink: 0; }
-  .ci-name { font-size: 11px; color: rgba(255,255,255,0.7); }
-  .ci-count { font-size: 10px; margin-top: 2px; }
+  .sb-title { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); letter-spacing: 3px; margin-bottom: 4px; }
+  .sb-docket { font-size: 10px; color: rgba(255,255,255,0.4); letter-spacing: 1px; margin-bottom: 24px; }
+  .sb-div { height: 1px; background: rgba(255,255,255,0.06); margin: 14px 0; }
+  .sb-label { font-size: 9px; color: rgba(255,255,255,0.45); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+  .sb-val { font-size: 26px; font-weight: 600; margin-bottom: 2px; letter-spacing: -0.5px; }
+  .sb-sub { font-size: 10px; margin-bottom: 16px; }
+  .sb-alert { font-size: 11px; font-weight: 700; letter-spacing: 2px; margin-bottom: 12px; }
+  .ci { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
+  .ci-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 3px; flex-shrink: 0; }
+  .ci-name { font-size: 11px; color: rgba(255,255,255,0.75); font-weight: 500; }
+  .ci-count { font-size: 10px; margin-top: 1px; }
 </style>
 </head>
 <body>
 
 <div id="hint"><div style="text-align:center">
-  <div class="title">DocketLens</div>
+  <svg width="36" height="28" viewBox="0 0 18 14" style="margin: 0 auto 6px; display: block;">
+    <path d="M1 1 L9 12 L17 1" fill="none" stroke="#FFA028" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="9" cy="7" r="2" fill="#FFA028"/>
+    <circle cx="9" cy="7" r="3.5" fill="none" stroke="#FFA028" stroke-width="0.6" opacity="0.5"/>
+  </svg>
+  <div class="title">Vigil</div>
   <div class="sub">click or press space</div>
 </div></div>
 
@@ -63,40 +68,69 @@
 <canvas id="c"></canvas>
 
 <div id="sidebar">
-  <div class="sb-title">DOCKETLENS</div>
-  <div class="sb-docket">FCC-2017-0200 &nbsp;|&nbsp; Net Neutrality</div>
+  <div class="sb-title" style="display:flex;align-items:center;gap:6px;">
+    <svg width="16" height="12" viewBox="0 0 18 14">
+      <path d="M1 1 L9 12 L17 1" fill="none" stroke="#FFA028" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="9" cy="7" r="2" fill="#FFA028"/>
+      <circle cx="9" cy="7" r="3.5" fill="none" stroke="#FFA028" stroke-width="0.6" opacity="0.5"/>
+    </svg>
+    VIGIL
+  </div>
+  <div class="sb-docket">WC 17-108 &nbsp;|&nbsp; Restoring Internet Freedom</div>
   <div class="sb-div"></div>
-  <div class="sb-label">Total Comments Analyzed</div>
-  <div class="sb-val" style="color:#fff">22,000,000</div>
-  <div class="sb-sub" style="color:rgba(255,255,255,0.25)">Largest comment period in federal history</div>
-  <div class="sb-label">Processing Time</div>
-  <div class="sb-val" style="color:#06b6d4">11.2<span style="font-size:18px;opacity:0.6">s</span></div>
-  <div class="sb-sub" style="color:rgba(6,182,212,0.35)">vs. 4 years (NY Attorney General investigation)</div>
+
+  <!-- HERO — comments + speed -->
+  <div class="sb-label">COMMENTS FILED</div>
+  <div class="sb-val" style="color:#FFA028">22M</div>
+  <div style="display:flex;align-items:baseline;gap:6px;margin:8px 0 3px">
+    <span style="color:#fff;font-size:22px;font-weight:600;letter-spacing:-0.5px">11.2s</span>
+    <span style="color:rgba(255,255,255,0.4);font-size:10px">to analyze</span>
+  </div>
+  <div style="color:rgba(255,255,255,0.3);font-size:10px">The NY AG took 4 years.</div>
+
   <div class="sb-div"></div>
-  <div class="sb-alert" style="color:#ef4444">4 COORDINATED CAMPAIGNS DETECTED</div>
-  <div class="sb-label">Manufactured Comments</div>
-  <div class="sb-val" style="color:#ef4444">18,200,000</div>
-  <div class="sb-sub" style="color:rgba(239,68,68,0.4)">82.7% of all submissions</div>
-  <div class="sb-label">Unique Voices</div>
-  <div class="sb-val" style="color:#22c55e">3,300,000</div>
-  <div class="sb-sub" style="color:rgba(34,197,94,0.4)">15.0% of all submissions</div>
+
+  <!-- VERDICT -->
+  <div style="color:#D94040;font-size:12px;font-weight:700;letter-spacing:0.06em;margin:2px 0 8px">82% FRAUDULENT</div>
+  <div style="display:flex;gap:24px;margin:0 0 2px">
+    <div>
+      <div style="color:rgba(255,255,255,0.45);font-size:9px;letter-spacing:0.06em">FAKE</div>
+      <div style="color:#D94040;font-size:16px;font-weight:600">18M</div>
+    </div>
+    <div>
+      <div style="color:rgba(255,255,255,0.45);font-size:9px;letter-spacing:0.06em">REAL</div>
+      <div style="color:rgba(255,255,255,0.7);font-size:16px;font-weight:600">3.3M</div>
+    </div>
+    <div>
+      <div style="color:rgba(255,255,255,0.45);font-size:9px;letter-spacing:0.06em">CAMPAIGNS</div>
+      <div style="color:#FFA028;font-size:16px;font-weight:600">4</div>
+    </div>
+  </div>
+
+  <div style="color:rgba(217,64,64,0.6);font-size:9px;margin-top:6px;letter-spacing:0.04em">500K+ traced to Russian IP addresses</div>
+
   <div class="sb-div"></div>
-  <div class="sb-label" style="margin-bottom:16px">Identified Campaigns</div>
-  <div class="ci"><div class="ci-dot" style="background:#ef4444;box-shadow:0 0 8px #ef444466"></div><div><div class="ci-name">Campaign A: Industry Template</div><div class="ci-count" style="color:rgba(239,68,68,0.5)">8,534,201 comments</div></div></div>
-  <div class="ci"><div class="ci-dot" style="background:#f97316;box-shadow:0 0 8px #f9731666"></div><div><div class="ci-name">Campaign B: Lead-Gen Firm #1</div><div class="ci-count" style="color:rgba(249,115,22,0.5)">4,211,087 comments</div></div></div>
-  <div class="ci"><div class="ci-dot" style="background:#ec4899;box-shadow:0 0 8px #ec489966"></div><div><div class="ci-name">Campaign C: Bot Network</div><div class="ci-count" style="color:rgba(236,72,153,0.5)">3,892,445 comments</div></div></div>
-  <div class="ci"><div class="ci-dot" style="background:#a855f7;box-shadow:0 0 8px #a855f766"></div><div><div class="ci-name">Campaign D: Student Script</div><div class="ci-count" style="color:rgba(168,85,247,0.5)">1,562,267 comments</div></div></div>
+
+  <!-- CAMPAIGNS -->
+  <div class="sb-label" style="margin-bottom:8px">IDENTIFIED CAMPAIGNS</div>
+  <div class="ci"><div class="ci-dot" style="background:#D94040"></div><div><div class="ci-name">Broadband for America <span style="color:#D94040;font-size:8px;font-weight:700;letter-spacing:0.06em;border:1px solid rgba(217,64,64,0.4);padding:0 3px;margin-left:4px;vertical-align:1px">ASTROTURF</span></div><div class="ci-count" style="color:rgba(217,64,64,0.7)">8.5M &middot; NCTA / USTelecom / CTIA</div></div></div>
+  <div class="ci"><div class="ci-dot" style="background:#E0A030"></div><div><div class="ci-name">Student Script <span style="color:#E0A030;font-size:8px;font-weight:700;letter-spacing:0.06em;border:1px solid rgba(224,160,48,0.4);padding:0 3px;margin-left:4px;vertical-align:1px">SCRIPT FLOOD</span></div><div class="ci-count" style="color:rgba(224,160,48,0.7)">7.7M &middot; single actor, fabricated names</div></div></div>
+  <div class="ci"><div class="ci-dot" style="background:#C77DBA"></div><div><div class="ci-name">Lead-Gen Firms <span style="color:#C77DBA;font-size:8px;font-weight:700;letter-spacing:0.06em;border:1px solid rgba(199,125,186,0.4);padding:0 3px;margin-left:4px;vertical-align:1px">IDENTITY FRAUD</span></div><div class="ci-count" style="color:rgba(199,125,186,0.7)">1.8M &middot; Fluent, Opt-Intelligence</div></div></div>
+  <div class="ci"><div class="ci-dot" style="background:#5B9BD5"></div><div><div class="ci-name">Bot Networks <span style="color:#5B9BD5;font-size:8px;font-weight:700;letter-spacing:0.06em;border:1px solid rgba(91,155,213,0.4);padding:0 3px;margin-left:4px;vertical-align:1px">AUTOMATED</span></div><div class="ci-count" style="color:rgba(91,155,213,0.7)">800K+ &middot; identical text, randomized metadata</div></div></div>
+
+  <div style="flex:1"></div>
+  <div style="color:rgba(255,255,255,0.2);font-size:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.05)">NY AG &ldquo;Fake Comments&rdquo; Report, May 2021</div>
 </div>
 
 <script>
 const CLUSTERS = [
-  { label:"Campaign A", color:"#ef4444", x:0.22, y:0.32, r:130 },
-  { label:"Campaign B", color:"#f97316", x:0.68, y:0.28, r:110 },
-  { label:"Campaign C", color:"#ec4899", x:0.25, y:0.72, r:100 },
-  { label:"Campaign D", color:"#a855f7", x:0.65, y:0.74, r:90 },
-  { label:"Organic: Pro",  color:"#22c55e", x:0.46, y:0.50, r:70 },
-  { label:"Organic: Anti", color:"#10b981", x:0.85, y:0.48, r:40 },
-  { label:"Technical",     color:"#06b6d4", x:0.10, y:0.50, r:30 },
+  { label:"BFA Industry",    color:"#D94040", x:0.22, y:0.32, r:130 },
+  { label:"Student Script",  color:"#E0A030", x:0.68, y:0.28, r:120 },
+  { label:"Lead-Gen Firms",  color:"#C77DBA", x:0.25, y:0.72, r:95 },
+  { label:"Bot Networks",    color:"#5B9BD5", x:0.65, y:0.74, r:80 },
+  { label:"Genuine: Pro-NN", color:"rgba(255,255,255,0.3)", x:0.46, y:0.50, r:70 },
+  { label:"Genuine: Anti-NN",color:"rgba(255,255,255,0.18)", x:0.85, y:0.48, r:35 },
+  { label:"Technical/Legal", color:"rgba(255,255,255,0.1)", x:0.10, y:0.50, r:25 },
 ];
 
 const COMMENTS = [
@@ -200,6 +234,7 @@ function triggerClustering() {
 
 function advance() {
   if (phase === "waiting") {
+    if (particles.length === 0) init(); // defer particle creation until first interaction
     phase = "streaming";
     document.getElementById("hint").style.opacity = "0";
     document.getElementById("phase-fill").style.width = "25%";
@@ -414,7 +449,8 @@ document.addEventListener("keydown", e => {
   if (e.key===" "||e.key==="Enter"||e.key==="ArrowRight") { e.preventDefault(); advance(); }
 });
 document.addEventListener("touchstart", e => { e.preventDefault(); advance(); });
-resize(); init();
+resize();
+// Don't init particles yet — defer to first click for instant page load
 ctx.fillStyle = "#000"; ctx.fillRect(0, 0, W, H);
 requestAnimationFrame(render);
 </script>
